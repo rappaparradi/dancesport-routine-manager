@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/bg_debut_dark">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvCurFigureName"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">           
+        </TextView>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/etTiming"
+            android:hint="@string/timing"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <requestFocus />
+        </EditText>
+
+    </LinearLayout>
+    
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/etComment"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:hint="@string/comment"
+            android:inputType="textMultiLine"
+            android:minLines="4" />
+
+    </LinearLayout>
+
+   <Button
+       android:id="@+id/btSaveRoutineRaw"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/save" />
+   <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="wrap_content" android:id="@+id/xK1"
+		android:layout_height="wrap_content" android:orientation="vertical"
+		android:visibility="gone">
+		<include android:id="@+id/xKeyBoard" layout="@layout/keyboard"></include>
+	</RelativeLayout>
+
+</LinearLayout>

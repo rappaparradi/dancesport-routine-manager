@@ -1,0 +1,177 @@
+<resources>
+
+    <string name="app_name">Менеджер Вариаций 1.0</string>
+    <string name="NewRoutine">Новая вариация</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="btNewFigure">Новая Фигура</string>
+    <string name="btAddFigures">Вставить Фигуры</string>
+    <string name="btMenuLatin">Латина</string>
+    <string name="btMenuStandard">Стандарт</string>
+    <string name="btMenuSamba">Самба</string>
+    <string name="btMenuChaCha">Ча Ча Ча</string>
+    <string name="btMenuRumba">Румба</string>
+    <string name="btMenuPasoDoble">Пасодобль</string>
+    <string name="btMenuJive">Джайв</string>
+    <string name="btMenuWaltz">Медленный Вальс</string>
+    <string name="btMenuTango">Танго</string>
+    <string name="btMenuVienneseWaltz">Венский Вальс</string>
+    <string name="btMenuFoxtrot">Фокстрот</string>
+    <string name="btMenuQuickstep">Квикстеп</string>
+    <string name="btNewRoutine">Новая Вариация</string>
+    <string name="btSubmitSelectedFigures">Выбрать</string>
+    <string name="timing">Счет</string>
+    <string name="comment">Комментарий</string>
+    <string name="save">Сохранить</string>
+    <string name="and">и</string>
+    <string name="saving">Сохранение&#8230;</string>
+    <string name="saving_question">Сохранить изменения?</string>
+    <string name="deleting">Удаление&#8230;</string>
+    <string name="Yes">Да</string>
+    <string name="No">Нет</string>
+    <string name="deleting_question">Удалить?</string>
+    <string name="Saved">Сохранено</string>
+    <string name="DidNotSave">Не сохранено</string>
+    <string name="Deleted">Удалено</string>
+    <string name="Search">Поиск</string>
+    <string name="Routine">Вариация</string>
+    <string name="iscreated">создана</string>
+    <string name="login_activity_username_label">Войти</string>
+    <string name="login_activity_label">Аутентификация</string>
+    <string name="login_activity_password_label">Пароль</string>
+    <string name="login_activity_ok_button">OK</string>
+    <string name="pref_title_sex_flag">Пол</string>
+    <string name="settings">Настройки</string>
+    <string name="mans_part">Партия Партнера</string>
+    <string name="womans_part">Партия Партнерши</string>
+    <string name="created">Создана:</string>
+    <string name="modified">Изменена:</string>
+    <string name="login_activity_loginfail_text_both">Пожалуйста, введите корректные Логин И Пароль</string>
+    <string name="login_activity_loginfail_text_pwonly">Не верный пароль</string>
+    <string name="login_activity_newaccount_text">Авторизуйтесь</string>
+    <string name="login_activity_loginfail_text_pwmissing">Введите пароль</string>
+    <string name="pref_key_flag_sex">Пол</string>
+
+    <string-array name="sex_items_titles">
+        <item name="Man">Мужской</item>
+        <item name="Woman">Женский</item>
+    </string-array>
+    <string-array name="sex_items_values">
+        <item name="Man">1</item>
+        <item name="Woman">0</item>
+    </string-array>
+    
+    <string name="linktoth_yt_vid">Связать с видео на YouTube</string>
+    <string name="play">Воспроизвести</string>
+    <string name="change_link">Изменить ссылку</string>
+    <string name="paste_here">Вставьте сюда ссылку YouTube видео&#8230;</string>
+    <string name="edit_tytle">Редактировать название</string>
+    <string name="edit_routine">Редактировать вариацию</string>
+    
+    <string-array name="figures_samba">
+        <item>Основные движения с ПН</item>
+        <item>Основные движения с ЛН</item>
+        <item>Основные движения в сторону</item>
+        <item>Основные движения поступательное</item>
+        <item>Основные движения наружное</item>
+        <item>Виски влево</item>
+        <item>Виски вправо</item>
+        <item>Виски с поворотом дамы под рукой (Вольта поворот дамы на месте) вправо</item>
+        <item>Виски с поворотом дамы под рукой (Вольта поворот дамы на месте) влево</item>
+        <item>Самба ход в ПП (Променадный самба ход)</item>
+        <item>Самба ход в сторону</item>
+        <item>Самба ход на месте</item>
+        <item>Вольта в продвижении (простая вольта) вправо в закрытой позиции</item>
+        <item>Вольта в продвижении (простая вольта) влево в закрытой позиции</item>
+        <item>Бота фого в продвижении вперед</item>
+        <item>Бота фого в продвижении назад</item>
+        <item>Крисс кросс бота фого (Теневые бота фого)</item>
+        <item>Бота фого в променад и контр променад (Променадная ботафого)</item>
+        <item>Крисс кросс (Вольта в продвижении вправо)</item>
+        <item>Крисс кросс (Вольта в продвижении влево)</item>
+        <item>Сольная вольта на месте</item>
+        <item>Левый поворот</item>
+        <item>Коса</item>
+        <item>Раскручивание</item>
+        <item>Дроппт вольта</item>
+        <item>Корта джака</item>
+        <item>Закрытые роки</item>
+        <item>Открытые роки</item>
+        <item>Роки назад</item>
+        <item>Аргентинские кроссы</item>
+        <item>Мэйпоул (Непрерывный вольта поворот влево)</item>
+        <item>Мэйпоул (Непрерывный вольта поворот вправо)</item>
+        <item>Поворот на трёх шагах</item>
+        <item>Самба локи</item>
+        <item>Самба шассе в сторону</item>
+        <item>Вольта в продвижении в теневой позиции</item>
+        <item>Вольта по кругу в теневой позиции</item>
+        <item>Контра бота фого</item>
+        <item>Карусель (Вольта по кругу влево)</item>
+        <item>Карусель (Вольта по кругу вправо)</item>
+        <item>Правый ролл</item>
+        <item>Бег в променад и контр променад</item>
+        <item>Крузадо шаги и локи</item>
+        <item>Кариока ранз</item>
+    </string-array>
+    <string-array name="figures_chachacha">
+        <item>Шассе в сторону влево</item>
+        <item>Шассе в сторону вправо</item>
+        <item>Компактное шассе</item>
+        <item>Лок вперед с ЛН</item>
+        <item>Лок вперед с ПН</item>
+        <item>Лок назад с ЛН</item>
+        <item>Лок назад с ПН</item>
+        <item>Ронд шассе</item>
+        <item>Твист шассе (Хип твист шассе)</item>
+        <item>Слип шассе (Слип-клоус шассе)</item>
+        <item>Основные движения в открытой позиции</item>
+        <item>Основные движения в закрытой позиции</item>
+        <item>Нью-Йорк (Чек из открытой открытой ПП)</item>
+        <item>Нью-Йорк (Чек из открытой контр ПП)</item>
+        <item>Поворот на месте влево</item>
+        <item>Поворот на месте вправо</item>
+        <item>Поворот переключатель влево</item>
+        <item>Поворот переключатель вправо</item>
+        <item>Поворот под рукой влево</item>
+        <item>Поворот под рукой вправо</item>
+        <item>Плечо к плечу</item>
+        <item>Рука к руке</item>
+        <item>Три ча-ча-ча</item>
+        <item>Шаги в сторону влево</item>
+        <item>Шаги в сторону вправо</item>
+        <item>Туда и обратно</item>
+        <item>Тайм стэп как Основное движение в сторону</item>
+        <item>Тайм стэп с кубинским кроссом (латинским кроссом)</item>
+        <item>Beep</item>
+        <item>Алемана</item>
+        <item>Хоккейная клюшка</item>
+        <item>Раскрытие вправо</item>
+        <item>Закрытый хип твист</item>
+        <item>Открытый хип твист</item>
+        <item>Кубинский брэйк в открытой позиции</item>
+        <item>Кубинский брэйк в открытой контр ПП</item>
+        <item>Дробный кубинский брэйк в открытой ПП</item>
+        <item>Дробный кубинский брэйк в открытой контр ПП</item>
+        <item>Турецкое полотенце</item>
+        <item>Дробный кубинский брэйк из открытой ПП</item>
+        <item>Дробный кубинский брэйк из открытой контр ПП</item>
+        <item>Правый волчок</item>
+        <item>Левый волчок</item>
+        <item>Раскрытие из левого волчка</item>
+        <item>Аида</item>
+        <item>Спираль</item>
+        <item>Локон</item>
+        <item>Роуп спиннинг</item>
+        <item>Кросс бэйсик</item>
+        <item>Чейс</item>
+        <item>Возлюбленная</item>
+        <item>Ранэвэй шассе (Бегущее шассе)</item>
+        <item>Хип твист спираль (Закрытый хип твист со спиральным окончанием)</item>
+        <item>Развитие фигуры Хип твист спираль (Открытый хип твист со спиральным окончанием)</item>
+        <item>Следуй за мной</item>
+        <item>Синкопированный открытый хип твист</item>
+        <item>Непрерывный хип твист по кругу</item>
+    </string-array>
+    
+</resources>
