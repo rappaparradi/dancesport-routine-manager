@@ -6,8 +6,9 @@
     android:clickable="true"
     android:focusable="true"
     android:orientation="horizontal"
-    android:padding="5dp" >
-
+    android:padding="5dp"
+    android:background="@drawable/bg_gray_bt" >
+    
     <ImageView
         android:id="@+id/iv_icon"
         android:layout_width="60dp"

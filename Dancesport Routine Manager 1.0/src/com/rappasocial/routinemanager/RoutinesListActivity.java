@@ -47,7 +47,7 @@ public class RoutinesListActivity extends ListActivity implements
 	ArrayList<Routine> routines;
 	BoxAdapterRoutine boxAdapter;
 	ExtendedApplication extApp;
-	TextView tvCurDanceChar;
+	TextView tvCurDanceChar, tvRoutineTitle;
 	Button btAddNewRoutune, btRLback;
 	DragSortListView lvMain;
 	Button btEditRoutine, btYT_id, btShareui;
@@ -217,8 +217,7 @@ public class RoutinesListActivity extends ListActivity implements
 
 		}
 		
-		 
-
+		
 
 
 	        //show on btn1
@@ -517,8 +516,8 @@ extApp.editTimingBuffer = source.editTimingBuffer;
 			}
 			
 			
-			QuickActionItem mailItem    = new QuickActionItem(ID_EDIT_TITLE, getString(R.string.edit_tytle), getResources().getDrawable(R.drawable.edit_icon));
-	        QuickActionItem vlcItem     = new QuickActionItem(ID_EDIT_ROUTINE, getString(R.string.edit_routine), getResources().getDrawable(R.drawable.edit_icon));
+			QuickActionItem mailItem    = new QuickActionItem(ID_EDIT_TITLE, getString(R.string.edit_tytle), null);
+	        QuickActionItem vlcItem     = new QuickActionItem(ID_EDIT_ROUTINE, getString(R.string.edit_routine), null);
 //	        QuickActionItem safariItem  = new QuickActionItem(ID_SAFARI, "Safari", getResources().getDrawable(R.drawable.edit_icon));
 	//create QuickActionPopup. Use QuickActionPopup.VERTICAL or QuickActionPopup.HORIZONTAL //param to define orientation
 	        holder.quickActionPopupEditRoutine = new QuickActionPopup(ctx, QuickActionPopup.VERTICAL, routines.get(position).name, routines.get(position).id);

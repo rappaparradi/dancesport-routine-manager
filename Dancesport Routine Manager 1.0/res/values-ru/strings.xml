@@ -65,8 +65,8 @@
     <string name="play">Воспроизвести</string>
     <string name="change_link">Изменить ссылку</string>
     <string name="paste_here">Вставьте сюда ссылку YouTube видео&#8230;</string>
-    <string name="edit_tytle">Редактировать название</string>
-    <string name="edit_routine">Редактировать вариацию</string>
+    <string name="edit_tytle">Ред. название</string>
+    <string name="edit_routine">Ред. вариацию</string>
     
     <string-array name="figures_samba">
         <item>Основные движения с ПН</item>

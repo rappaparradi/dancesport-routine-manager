@@ -49,7 +49,7 @@ public class RoutineEditActivity extends ListActivity implements
 	ArrayList<RoutineRaw> routine_raws;
 	BoxAdapterRoutineRaw boxAdapter;
 	ExtendedApplication extApp;
-	TextView tvCurDanceCharRE;
+	TextView tvCurDanceCharRE, tvRoutineTitle;
 	Button btAddFigures;
 	DragSortListView lvRoutineRaws;
 	Button btNewFigure;
@@ -234,6 +234,9 @@ public class RoutineEditActivity extends ListActivity implements
 			tvCurDanceCharRE.setText("Q");
 
 		}
+		
+		TextView tvRoutineTitle = (TextView) findViewById(R.id.tvRoutineTitle); 
+		tvRoutineTitle.setText(extApp.getRoutineNameByID(extApp.currentRoutineid));
 		
 		// Gesture detection
         gestureDetector = new GestureDetector(new MyGestureDetector());

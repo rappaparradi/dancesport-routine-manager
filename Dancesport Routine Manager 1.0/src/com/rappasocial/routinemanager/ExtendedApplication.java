@@ -77,6 +77,37 @@ public class ExtendedApplication extends Application {
 		        return "";
 		        
     }
+    
+    public String getRoutineNameByID(int r_id) {
+    	
+		String selection = null;
+        Cursor c = null;
+	    
+        selection = dbHelper.COLUMN_ROUTINES_ID + " = " + r_id;
+        
+	    	
+	
+	      
+	      c = db.query(dbHelper.DB_TABLE_ROUTINES, null, selection, null, null, null,
+	          null);
+	      
+	      if (c != null) {
+	          if (c.moveToFirst()) {
+	            
+	            do {
+	              
+	            	return c.getString(c.getColumnIndex(dbHelper.COLUMN_ROUTINES_NAME));
+	              
+	              
+
+	            } while (c.moveToNext());
+	          }
+	          c.close();
+	        };
+	        
+	        return "";
+	        
+}
 	
 
 }
