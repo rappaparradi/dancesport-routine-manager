@@ -29,12 +29,10 @@ OnFocusChangeListener {
 	EditText etComment;
 	Button btSaveRoutineRaw;
 	TextView tvCurFigureName;
-	private Button mBSpace, mBdone, mBack, mBChange, mNum;
+	private Button mBack;
 	private boolean isEdit = true;
 
-	private int w, mWindowWidth;
 
-	private Button mB[] = new Button[12];
 	
 	public void onClick(View v) {
 		
@@ -85,8 +83,7 @@ OnFocusChangeListener {
 			etComment.setText(extApp.editCommentBuffer);
 //			etTiming.setOnClickListener(this);
 //			etTiming.setOnFocusChangeListener(this);
-			
-			setKeys();
+		
 //			setFrow();
 //			setSrow();
 //			setTrow();
@@ -98,34 +95,7 @@ OnFocusChangeListener {
 		
 	}
 	
-	private void setKeys() {
-		mWindowWidth = getWindowManager().getDefaultDisplay().getWidth(); // getting
-		// window
-		// height
-		// getting ids from xml files
-		mB[0] = (Button) findViewById(R.id.xA);
-		mB[1] = (Button) findViewById(R.id.xAnd);
-		mB[2] = (Button) findViewById(R.id.xQ);
-		mB[3] = (Button) findViewById(R.id.xS);
-		mB[4] = (Button) findViewById(R.id.x1);
-		mB[5] = (Button) findViewById(R.id.x2);
-		mB[6] = (Button) findViewById(R.id.x3);
-		mB[7] = (Button) findViewById(R.id.x4);
-		mB[8] = (Button) findViewById(R.id.x5);
-		mB[9] = (Button) findViewById(R.id.x6);
-		mB[10] = (Button) findViewById(R.id.x7);
-		mB[11] = (Button) findViewById(R.id.x8);
-		mBSpace = (Button) findViewById(R.id.xSpace);
-		mBdone = (Button) findViewById(R.id.xDone);
-		mBack = (Button) findViewById(R.id.xBack);
-		for (int i = 0; i < mB.length; i++)
-			mB[i].setOnClickListener(this);
-		mBSpace.setOnClickListener(this);
-		mBdone.setOnClickListener(this);
-		mBack.setOnClickListener(this);
 
-
-	}
 	
 	public boolean onTouch(View v, MotionEvent event) {
 	
