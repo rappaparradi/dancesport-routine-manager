@@ -62,7 +62,7 @@ public class AddRoutineActivity extends Activity implements OnClickListener {
 				Context context = getApplicationContext();
 				CharSequence text = getString(R.string.Routine) + " '"
 						+ etRoutinesName.getText().toString() + "' "
-						+ getString(R.string.iscreated);
+						+ getString(R.string.ismodified);
 				int duration = Toast.LENGTH_SHORT;
 				Toast.makeText(context, text, duration).show();
 				finish();

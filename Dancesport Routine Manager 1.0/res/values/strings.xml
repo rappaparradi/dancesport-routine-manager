@@ -81,8 +81,10 @@
     
     <style name="TextRoutinesTRanspTitle">
         <item name="android:textColor">#ffffff</item>
-        <item name="android:textSize">12dp</item>
+        <item name="android:textSize">14dp</item>
         <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
     </style>
     
     <style name="TextYTlink">
@@ -145,6 +147,7 @@
     <string name="Search">Search</string>
     <string name="Routine">Routine</string>
     <string name="iscreated">is created</string>
+    <string name="ismodified">is modified</string>
     <string name="login_activity_username_label">Log in</string>
     <string name="login_activity_label">Authenticatation</string>
     <string name="login_activity_password_label">Password</string>

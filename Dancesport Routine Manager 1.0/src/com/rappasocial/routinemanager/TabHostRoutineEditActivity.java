@@ -220,12 +220,24 @@ public class TabHostRoutineEditActivity extends TabActivity {
 									public void onClick(DialogInterface dialog,
 											int id) {
 										SaveTheRoutineRaws();
-										extApp.isRoutineModified = false;
+										ContentValues cv = new ContentValues();
+
+										cv.put(extApp.dbHelper.COLUMN_ROUTINES_MODIFIED_ON,
+												System.currentTimeMillis());
+
+										extApp.db.update(extApp.dbHelper.DB_TABLE_ROUTINES, cv, extApp.dbHelper.COLUMN_ROUTINES_ID + "=" + extApp.currentRoutineid, null);
 										Context context = getApplicationContext();
-										CharSequence text = getString(R.string.Saved);
+										CharSequence text = getString(R.string.Routine) + " '"
+												+ extApp.getRoutineNameByID(extApp.currentRoutineid) + "' "
+												+ getString(R.string.ismodified);
 										int duration = Toast.LENGTH_SHORT;
-										Toast.makeText(context, text, duration)
-												.show();
+										Toast.makeText(context, text, duration).show();
+										extApp.isRoutineModified = false;
+//										context = getApplicationContext();
+//										text = getString(R.string.Saved);
+//										duration = Toast.LENGTH_SHORT;
+//										Toast.makeText(context, text, duration)
+//												.show();
 										exit();
 
 									}

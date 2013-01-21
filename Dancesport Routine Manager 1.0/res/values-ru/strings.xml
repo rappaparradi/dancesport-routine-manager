@@ -36,6 +36,7 @@
     <string name="Search">Поиск</string>
     <string name="Routine">Вариация</string>
     <string name="iscreated">создана</string>
+    <string name="ismodified">изменена</string>
     <string name="login_activity_username_label">Войти</string>
     <string name="login_activity_label">Аутентификация</string>
     <string name="login_activity_password_label">Пароль</string>

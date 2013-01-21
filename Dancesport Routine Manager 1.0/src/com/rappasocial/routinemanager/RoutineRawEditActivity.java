@@ -30,7 +30,6 @@ OnFocusChangeListener {
 	Button btSaveRoutineRaw;
 	TextView tvCurFigureName;
 	private Button mBSpace, mBdone, mBack, mBChange, mNum;
-	private RelativeLayout mLayout, mKLayout;
 	private boolean isEdit = true;
 
 	private int w, mWindowWidth;
@@ -40,15 +39,7 @@ OnFocusChangeListener {
 	public void onClick(View v) {
 		
 		
-		if (v == mBdone) {
-
-			disableKeyboard();
-
-//		} else if (v != mBdone && v != mBack && v != mBChange && v != mNum) {
-//			addText(v);
-
-
-		} else if (v == mBack) {
+	    if (v == mBack) {
 			isBack(v);
 		} else if (v == btSaveRoutineRaw) {
 		     
@@ -101,8 +92,7 @@ OnFocusChangeListener {
 //			setTrow();
 //			setForow();
 		
-			mLayout = (RelativeLayout) findViewById(R.id.xK1);
-			mKLayout = (RelativeLayout) findViewById(R.id.xKeyBoard);
+		
 		
 	
 		
@@ -152,40 +142,9 @@ OnFocusChangeListener {
 		return true;
 	}
 	
-	// enabling customized keyboard
-		private void enableKeyboard() {
 
-			mLayout.setVisibility(RelativeLayout.VISIBLE);
-			mKLayout.setVisibility(RelativeLayout.VISIBLE);
-
-		}
-
-		// Disable customized keyboard
-		private void disableKeyboard() {
-			mLayout.setVisibility(RelativeLayout.INVISIBLE);
-			mKLayout.setVisibility(RelativeLayout.INVISIBLE);
-
-		}
-
-		private void hideDefaultKeyboard() {
-			getWindow().setSoftInputMode(
-					WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
-		}
 		
-		private void addText(View v) {
-			if (isEdit == true) {
-				String b = "";
-				b = (String) v.getTag();
-				if (b != null) {
-					// adding text in Edittext
-					etTiming.append(b);
 
-				}
-			}
-
-
-		}
 		
 		public void onFocusChange(View v, boolean hasFocus) {
 			if (v == etTiming && hasFocus == true) {
