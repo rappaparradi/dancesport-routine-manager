@@ -4,13 +4,17 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.TextView.OnEditorActionListener;
 
-public class AddRoutineActivity extends Activity implements OnClickListener {
+public class AddRoutineActivity extends Activity implements OnClickListener, OnEditorActionListener {
 
 	ExtendedApplication extApp;
 	EditText etRoutinesName;
@@ -93,7 +97,23 @@ public class AddRoutineActivity extends Activity implements OnClickListener {
 		
 		btAddnewRoutine = (Button) findViewById(R.id.btAddnewRoutine);
 		btAddnewRoutine.setOnClickListener(this);
+		
+		etRoutinesName.setOnEditorActionListener(this);
 
+	}
+	
+	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+		if ( (event.getAction() == KeyEvent.ACTION_DOWN  ) &&
+	             (event.getKeyCode()           == KeyEvent.KEYCODE_ENTER)   )
+	        {               
+	           // hide virtual keyboard
+	           InputMethodManager imm = 
+	              (InputMethodManager)getBaseContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+	           imm.hideSoftInputFromWindow(etRoutinesName.getWindowToken(), 0);
+	           return true;
+	        }
+	        return false;
+		
 	}
 
 }
