@@ -208,6 +208,9 @@ public class DBHelper extends SQLiteOpenHelper {
 		ContentValues cv = new ContentValues();
 		int samba_id = 0;
 		int chachacha_id = 0;
+		int rumba_id = 0;
+		int pasodoble_id = 0;
+		int jive_id = 0;
 		String[] columns = null;
 		String selection = null;
 		String[] selectionArgs = null;
@@ -273,6 +276,99 @@ public class DBHelper extends SQLiteOpenHelper {
 
 			cv.put(this.COLUMN_FIGURES_NAME, chachacha_samba_array[i]);
 			cv.put(this.COLUMN_FIGURES_DANCE_ID, chachacha_id);
+			db.insert(this.DB_TABLE_FIGURES, null, cv);
+
+		}
+		
+		selectionArgs = new String[] { this.Rumba };
+
+		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+				+ " = ?";
+
+		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+				null, null, null);
+
+		if (c != null) {
+			if (c.moveToFirst()) {
+
+				do {
+					rumba_id = c.getInt(c
+							.getColumnIndex(this.COLUMN_DANCES_ID));
+
+				} while (c.moveToNext());
+			}
+			c.close();
+		}
+		;
+
+		String[] rumba_array = res
+				.getStringArray(R.array.figures_rumba);
+		for (int i = 0; i < rumba_array.length; i++) {
+
+			cv.put(this.COLUMN_FIGURES_NAME, rumba_array[i]);
+			cv.put(this.COLUMN_FIGURES_DANCE_ID, rumba_id);
+			db.insert(this.DB_TABLE_FIGURES, null, cv);
+
+		}
+		
+		selectionArgs = new String[] { this.PasoDoble };
+
+		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+				+ " = ?";
+
+		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+				null, null, null);
+
+		if (c != null) {
+			if (c.moveToFirst()) {
+
+				do {
+					pasodoble_id = c.getInt(c
+							.getColumnIndex(this.COLUMN_DANCES_ID));
+
+				} while (c.moveToNext());
+			}
+			c.close();
+		}
+		;
+
+		String[] pasodoble_array = res
+				.getStringArray(R.array.figures_pasodoble);
+		for (int i = 0; i < pasodoble_array.length; i++) {
+
+			cv.put(this.COLUMN_FIGURES_NAME, pasodoble_array[i]);
+			cv.put(this.COLUMN_FIGURES_DANCE_ID, pasodoble_id);
+			db.insert(this.DB_TABLE_FIGURES, null, cv);
+
+		}
+		
+		selectionArgs = new String[] { this.Jive };
+
+		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+				+ " = ?";
+
+		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+				null, null, null);
+
+		if (c != null) {
+			if (c.moveToFirst()) {
+
+				do {
+					jive_id = c.getInt(c
+							.getColumnIndex(this.COLUMN_DANCES_ID));
+
+				} while (c.moveToNext());
+			}
+			c.close();
+		}
+		;
+
+		String[] jive_array = res
+				.getStringArray(R.array.figures_Jive);
+		for (int i = 0; i < jive_array.length; i++) {
+
+			cv.put(this.COLUMN_FIGURES_NAME, jive_array[i]);
+			cv.put(this.COLUMN_FIGURES_DANCE_ID, jive_id);
 			db.insert(this.DB_TABLE_FIGURES, null, cv);
 
 		}
