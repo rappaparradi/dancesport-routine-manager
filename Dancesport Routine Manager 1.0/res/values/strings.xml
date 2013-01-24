@@ -33,7 +33,7 @@
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">2</item>
     </style>
-    
+
     <style name="ButtonTextActionBar">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -46,7 +46,7 @@
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">2</item>
     </style>
-    
+
     <style name="ActionBarBackButton">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -78,7 +78,7 @@
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">2</item>
     </style>
-    
+
     <style name="TextRoutinesTRanspTitle">
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">14dp</item>
@@ -86,7 +86,7 @@
         <item name="android:paddingTop">4dp</item>
         <item name="android:paddingBottom">4dp</item>
     </style>
-    
+
     <style name="TextYTlink">
         <item name="android:textColor">#414347</item>
         <item name="android:textSize">17dp</item>
@@ -163,7 +163,6 @@
     <string name="womans_part">Lady\'s part</string>
     <string name="created">Created:</string>
     <string name="modified">Modified:</string>
-    
     <string name="linktoth_yt_vid">Link to the YouTube video</string>
     <string name="play">Play</string>
     <string name="change_link">Change link</string>
@@ -179,7 +178,6 @@
         <item name="Man">1</item>
         <item name="Woman">0</item>
     </string-array>
-    
     <string-array name="figures_samba">
         <item>Basic Movements Natural</item>
         <item>Basic Movements Reverse</item>
@@ -284,6 +282,127 @@
         <item>Follow My Leader</item>
         <item>Syncopated Open Hip Twist </item>
         <item>Continuous Circular Hip Twist</item>
+    </string-array>
+    <string-array name="figures_rumba">
+        <item>Basic Movement Closed</item>
+        <item>Basic Movement Open</item>
+        <item>Alternative Basic Movements</item>
+        <item>Cucarachas</item>
+        <item>New York (Check from Open CPP)</item>
+        <item>New York (Check from Open PP)</item>
+        <item>Sport Turn (Switch Turn) to Left</item>
+        <item>Sport Turn (Switch Turn) to Right</item>
+        <item>Underarm Turn to Left</item>
+        <item>Underarm Turn to Right</item>
+        <item>Shoulder to Shoulder</item>
+        <item>Hand to Hand</item>
+        <item>Advanced Opening Out Movement</item>
+        <item>Side Steps to Left</item>
+        <item>Side Steps to Right</item>
+        <item>Side Steps and Cucarachas</item>
+        <item>Cuban Rocks</item>
+        <item>Fan</item>
+        <item>Alemana</item>
+        <item>Hockey Stick</item>
+        <item>Natural Top</item>
+        <item>Opening Out to Left</item>
+        <item>Opening Out to Right</item>
+        <item>Natural Opening Out Movement(Natural Opening Out to Right)</item>
+        <item>Closed Hip Twist</item>
+        <item>Open Hip Twist</item>
+        <item>Reverse Top</item>
+        <item>Opening Out From Reverse Top</item>
+        <item>Aida (Fallaway)</item>
+        <item>Spiral</item>
+        <item>Curl</item>
+        <item>Rope Spinning</item>
+        <item>Fencing</item>
+        <item>Sliding Doors</item>
+        <item>Progressive Walks Forward</item>
+        <item>Progressive Walks Backward</item>
+        <item>Syncopated Cuban Rocks</item>
+        <item>Three Threes</item>
+        <item>Three Alemanas</item>
+        <item>Advanced Opening Out Movement</item>
+        <item>Continuous Hip Twist</item>
+        <item>Circular Hip Twist (Continuous Circular Hip Twist)</item>
+        <item>Runaway Alemana</item>
+        <item>Syncopated Open Hip Twist</item>
+    </string-array>
+    <string-array name="figures_pasodoble">
+        <item>Appel</item>
+        <item>Syncopated Appel</item>
+        <item>Sur Place</item>
+        <item>Basic Movement</item>
+        <item>Chasses to Left</item>
+        <item>Chasses to Right</item>
+        <item>Drag</item>
+        <item>Deplacement (also Attack)</item>
+        <item>Promenade Link</item>
+        <item>Promenade Close</item>
+        <item>Promenade</item>
+        <item>Ecart (Fallaway Whisk)</item>
+        <item>Separation</item>
+        <item>Separation with Lady’s Caping Walks</item>
+        <item>Separation with Lady’s Caping Walks to Fallaway Whisk</item>
+        <item>Separation with Fallaway Ending (Separation to Fallaway Whisk)</item>
+        <item>Fallaway Ending to Separation</item>
+        <item>Huit</item>
+        <item>Sixteen</item>
+        <item>Promenade to Counter Promenade</item>
+        <item>Grand Circle</item>
+        <item>Open Telemark</item>
+        <item>La Passe</item>
+        <item>Banderillas</item>
+        <item>Twist Turn</item>
+        <item>Fallaway Reverse Turn</item>
+        <item>Coup de Pique</item>
+        <item>Left Foot Variation</item>
+        <item>Spanish Lines</item>
+        <item>Flamenco Taps</item>
+        <item>Syncopated Separation</item>
+        <item>Travelling Spins from PP</item>
+        <item>Travelling Spins from CPP</item>
+        <item>Fregolina (also Farol)</item>
+        <item>Twists</item>
+        <item>Chasse Cape</item>
+        <item>Alternative Entries to PP</item>
+    </string-array>
+    <string-array name="figures_Jive">
+        <item>Basic in Place</item>
+        <item>Fallaway Rock (Basic in Fallaway)</item>
+        <item>Fallaway Throwaway</item>
+        <item>Link</item>
+        <item>Double Link</item>
+        <item>Change of Places Right to Left</item>
+        <item>Change of Places Left to Right</item>
+        <item>Change of Hands Behind Back</item>
+        <item>Hip Bump (Left Shoulder Shove)</item>
+        <item>American Spin</item>
+        <item>Stop and Go</item>
+        <item>Whip</item>
+        <item>Double Whip (Double Cross Whip)</item>
+        <item>Whip Throwaway</item>
+        <item>Double Whip Throwaway</item>
+        <item>Toe Hill Swivels</item>
+        <item>Promenade Walks (Slow and Quick) Walks</item>
+        <item>Rolling off the Arm</item>
+        <item>Advanced Link (Break)</item>
+        <item>Overturned Fallaway Throwaway</item>
+        <item>Overturned Change of Places Left to Right</item>
+        <item>Mooch</item>
+        <item>Reverse Whip</item>
+        <item>Windmill</item>
+        <item>Spanish Arms</item>
+        <item>Simple Spin</item>
+        <item>Miami Special</item>
+        <item>Curly Whip</item>
+        <item>Chicken Walks</item>
+        <item>Stalking Walks, Flicks and Break(Flicks Into Break)</item>
+        <item>Change of Places Right to Left with Double Spin</item>
+        <item>Shoulder Spin</item>
+        <item>Chugging</item>
+        <item>Catapult</item>
     </string-array>
 
 </resources>
