@@ -656,7 +656,7 @@ public class RoutineEditActivity extends ListActivity implements
 					// cv.put(extApp.dbHelper.COLUMN_ROUTINE_RAWS_GENDER,
 					// routine_raws.get(i).gender);
 					body = body + "<tr>" + "<td>" + htmlrawid + "</td>"
-							+ "<td>" + htmlfname + "</td>" + "<td>"
+							+ "<td nowrap=\"wrap\" style=\"width:380px;\">" + htmlfname + "</td>" + "<td>"
 							+ htmlcomment + "</td>" + "<td>" + htmltiming
 							+ "</td>" + "</tr>";
 
@@ -679,7 +679,7 @@ public class RoutineEditActivity extends ListActivity implements
 
 				final Intent emailIntent = new Intent(
 						android.content.Intent.ACTION_SEND);
-				emailIntent.setType("text/html");
+				emailIntent.setType("message/rfc822");
 				emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
 						subject);
 				emailIntent.putExtra(android.content.Intent.EXTRA_TEXT,
