@@ -404,5 +404,186 @@
         <item>Chugging</item>
         <item>Catapult</item>
     </string-array>
+    <string-array name="figures_waltz">
+        <item>RF Closed Change(Natural to Reverse)</item>
+        <item>LF Closed Change (Reverse to Natural)</item>
+        <item>Natural Turn</item>
+        <item>Reverse Turn</item>
+        <item>Natural Spin Turn</item>
+        <item>Whisk</item>
+        <item>Chasse from PP</item>
+        <item>Hesitation Change</item>
+        <item>Outside Change</item>
+        <item>Reverse Corte</item>
+        <item>Back Whisk</item>
+        <item>Back Lock (Backward Lock Step)</item>
+        <item>Progressive Chasse to Righ</item>
+        <item>Progressive Chasse</item>
+        <item>Open Impetus (Open Impetus Turn)</item>
+        <item>Weave from PP</item>
+        <item>Drag Hesitation</item>
+        <item>Closed Impetus (Impetus Turn)</item>
+        <item>Basic Weave (Weave in Waltz Time)</item>
+        <item>Double Reverse Spin</item>
+        <item>Reverse Pivot</item>
+        <item>Closed Telemark (Telemark)</item>
+        <item>Open Telemark</item>
+        <item>Cross Hesitation</item>
+        <item>Wing</item>
+        <item>Outside Spin</item>
+        <item>Turning Lock (Turning Lock to Left)</item>
+        <item>Turning Lock to Right</item>
+        <item>Closed Wing</item>
+        <item>Curved Feather from PP</item>
+        <item>Fallaway Reverse and Slip Pivot</item>
+        <item>Hover Corte</item>
+        <item>Fallaway Whisk</item>
+        <item>Fallaway Natural Turn</item>
+        <item>Running Spin Turn</item>
+        <item>Passing Natural Turn</item>
+        <item>Quick Natural Weave from PP (Running Weave)</item>
+        <item>Running Finish</item>
+        <item>Open Running Finish</item>
+        <item>Running Cross Chasse</item>
+    </string-array>
+    <string-array name="figures_tango">
+        <item>Walk</item>
+        <item>Progressive Side Step</item>
+        <item>Progressive Link</item>
+        <item>Closed Promenade</item>
+        <item>Open Finish</item>
+        <item>Open Promenade</item>
+        <item>Rock Turn (Natural Rock Turn)</item>
+        <item>Open Reverse Turn, Lady in Line (Closed Finish)</item>
+        <item>Open Reverse Turn, Lady in Line (Open Finish)</item>
+        <item>Basic Reverse Turn</item>
+        <item>Back Corte</item>
+        <item>Progressive Side Step Reverse Turn</item>
+        <item>Rock Back on RF</item>
+        <item>Rock Back on LF</item>
+        <item>Natural Twist Turn</item>
+        <item>Natural Promenade Turn</item>
+        <item>Promenade Link</item>
+        <item>Four Step</item>
+        <item>Back Open Promenade</item>
+        <item>Outside Swivel</item>
+        <item>Fallaway Four Step</item>
+        <item>Four Step Change</item>
+        <item>Brush Тар</item>
+        <item>Five Step</item>
+        <item>Whisk</item>
+        <item>Back Whisk</item>
+        <item>Fallaway Promenade</item>
+        <item>Basic Reverse Turn</item>
+        <item>Chase</item>
+        <item>Fallaway Reverse and Slip Pivot</item>
+        <item>Open Natural Turn (Passing Natural Turn)</item>
+        <item>Open Telemark</item>
+        <item>Outside Spin</item>
+        <item>Reverse Pivot</item>
+    </string-array>
+    <string-array name="figures_viennese_waltz">
+        <item>Natural Turn</item>
+        <item>Reverse Turn</item>
+        <item>RF Forward Change Step</item>
+        <item>LF Forward Change Step</item>
+        <item>RF Backward Change Step</item>
+        <item>LF Backward Change Step</item>
+    </string-array>
+    <string-array name="figures_foxtrot">
+        <item>Feather (Feather Step)</item>
+        <item>Three Step</item>
+        <item>Natural Turn</item>
+        <item>Reverse Turn</item>
+        <item>Feather Finish</item>
+        <item>Closed Impetus (Impetus Turn)</item>
+        <item>Natural Weave</item>
+        <item>Change of Direction</item>
+        <item>Basic Weave (Weave)</item>
+        <item>Closed Telemark (Telemark)</item>
+        <item>Open Telemark</item>
+        <item>Feather Ending</item>
+        <item>Passing Natural Turn from PP</item>
+        <item>Outside Swivel</item>
+        <item>Top Spin</item>
+        <item>Hover Feather</item>
+        <item>Hover Telemark</item>
+        <item>Natural Telemark</item>
+        <item>Hover Cross</item>
+        <item>Open Impetus Turn</item>
+        <item>Weave from PP</item>
+        <item>Reverse Wave</item>
+        <item>Natural Twist Turn</item>
+        <item>Curved Feather</item>
+        <item>Back Feather</item>
+        <item>Natural Zig-Zag from PP</item>
+        <item>Fallaway Reverse and Slip Pivot</item>
+        <item>Natural Hover Telemark</item>
+        <item>Bounce Fallaway with Weave Ending</item>
+        <item>Quick Natural Weave from PP (Running Weave)</item>
+        <item>Quick Open Reverse</item>
+        <item>Reverse Pivot</item>
+        <item>Extended Reverse Wave</item>
+        <item>Curved Three Step</item>
+        <item>Curved Feather from PP</item>
+        <item>Whisk</item>
+        <item>Back Whisk</item>
+        <item>Double Reverse Spin</item>
+        <item>Outside Spin</item>
+        <item>Outside Change</item>
+        <item>Progressive Chasse to Right</item>
+        <item>Running Finish</item>
+        <item>Open Running Finish</item>
+        <item>Hover Corte</item>
+    </string-array>
+    <string-array name="figures_quickstep">
+        <item>Quarter Turn to Right</item>
+        <item>Quarter Turn to Left (Heel Pivot)</item>
+        <item>Natural Turn</item>
+        <item>Natural Turn with Hesitation</item>
+        <item>Natural Pivot Turn</item>
+        <item>Natural Spin Turn</item>
+        <item>Progressive Chasse</item>
+        <item>Chasse Reverse Turn</item>
+        <item>Forward Lock Step</item>
+        <item>Backward Lock Step</item>
+        <item>Progressive Chasse to Right</item>
+        <item>Tipple Chasse to Right</item>
+        <item>Running Finish</item>
+        <item>Outside Change</item>
+        <item>Cross Chasse</item>
+        <item>Tipple Chasse to Left</item>
+        <item>V6</item>
+        <item>Closed Impetus (Impetus Turn)</item>
+        <item>Reverse Pivot</item>
+        <item>Double Reverse Spin</item>
+        <item>Quick Open Reverse</item>
+        <item>Running Right Turn</item>
+        <item>Four Quick Run</item>
+        <item>Closed Telemark (Telemark)</item>
+        <item>Cross Swivel</item>
+        <item>Zig-Zag, Back Lock and Running Finish</item>
+        <item>Change of Direction</item>
+        <item>Whisk</item>
+        <item>Back Whisk</item>
+        <item>Fishtail</item>
+        <item>Six Quick Run</item>
+        <item>Rumba Cross</item>
+        <item>Tipsy to Right</item>
+        <item>Tipsy to Left</item>
+        <item>Hover Corte</item>
+        <item>Running Spin Turn</item>
+        <item>Open Running Finish</item>
+        <item>Open Impetus Turn</item>
+        <item>Open Telemark</item>
+        <item>Open Natural Turn (Passing Natural Turn)</item>
+        <item>Running Cross Chasse</item>
+        <item>Outside Spin</item>
+        <item>Fallaway Reverse and Slip Pivot</item>
+        <item>Curved Feather</item>
+        <item>Pivots to Right (Natural Pivots)</item>
+        <item>Turning Lock to Right</item>
+        <item>Curved Feather from PP</item>
+    </string-array>
 
 </resources>

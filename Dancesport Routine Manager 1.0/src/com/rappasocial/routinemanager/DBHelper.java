@@ -211,6 +211,11 @@ public class DBHelper extends SQLiteOpenHelper {
 		int rumba_id = 0;
 		int pasodoble_id = 0;
 		int jive_id = 0;
+		int waltz_id = 0;
+		int tango_id = 0;
+		int viennese_waltz_id = 0;
+		int foxtrot_id = 0;
+		int quickstep_id = 0;
 		String[] columns = null;
 		String selection = null;
 		String[] selectionArgs = null;
@@ -369,6 +374,161 @@ public class DBHelper extends SQLiteOpenHelper {
 
 			cv.put(this.COLUMN_FIGURES_NAME, jive_array[i]);
 			cv.put(this.COLUMN_FIGURES_DANCE_ID, jive_id);
+			db.insert(this.DB_TABLE_FIGURES, null, cv);
+
+		}
+		
+		selectionArgs = new String[] { this.Waltz };
+
+		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+				+ " = ?";
+
+		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+				null, null, null);
+
+		if (c != null) {
+			if (c.moveToFirst()) {
+
+				do {
+					jive_id = c.getInt(c
+							.getColumnIndex(this.COLUMN_DANCES_ID));
+
+				} while (c.moveToNext());
+			}
+			c.close();
+		}
+		;
+
+		String[] waltz_array = res
+				.getStringArray(R.array.figures_waltz);
+		for (int i = 0; i < waltz_array.length; i++) {
+
+			cv.put(this.COLUMN_FIGURES_NAME, waltz_array[i]);
+			cv.put(this.COLUMN_FIGURES_DANCE_ID, waltz_id);
+			db.insert(this.DB_TABLE_FIGURES, null, cv);
+
+		}
+		
+		selectionArgs = new String[] { this.Tango };
+
+		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+				+ " = ?";
+
+		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+				null, null, null);
+
+		if (c != null) {
+			if (c.moveToFirst()) {
+
+				do {
+					tango_id = c.getInt(c
+							.getColumnIndex(this.COLUMN_DANCES_ID));
+
+				} while (c.moveToNext());
+			}
+			c.close();
+		}
+		;
+
+		String[] tango_array = res
+				.getStringArray(R.array.figures_tango);
+		for (int i = 0; i < tango_array.length; i++) {
+
+			cv.put(this.COLUMN_FIGURES_NAME, tango_array[i]);
+			cv.put(this.COLUMN_FIGURES_DANCE_ID, tango_id);
+			db.insert(this.DB_TABLE_FIGURES, null, cv);
+
+		}
+		
+		selectionArgs = new String[] { this.VienneseWaltz };
+
+		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+				+ " = ?";
+
+		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+				null, null, null);
+
+		if (c != null) {
+			if (c.moveToFirst()) {
+
+				do {
+					viennese_waltz_id = c.getInt(c
+							.getColumnIndex(this.COLUMN_DANCES_ID));
+
+				} while (c.moveToNext());
+			}
+			c.close();
+		}
+		;
+
+		String[] viennese_waltz_array = res
+				.getStringArray(R.array.figures_jive);
+		for (int i = 0; i < viennese_waltz_array.length; i++) {
+
+			cv.put(this.COLUMN_FIGURES_NAME, viennese_waltz_array[i]);
+			cv.put(this.COLUMN_FIGURES_DANCE_ID, viennese_waltz_id);
+			db.insert(this.DB_TABLE_FIGURES, null, cv);
+
+		}
+		
+		selectionArgs = new String[] { this.Foxtrot };
+
+		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+				+ " = ?";
+
+		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+				null, null, null);
+
+		if (c != null) {
+			if (c.moveToFirst()) {
+
+				do {
+					foxtrot_id = c.getInt(c
+							.getColumnIndex(this.COLUMN_DANCES_ID));
+
+				} while (c.moveToNext());
+			}
+			c.close();
+		}
+		;
+
+		String[] foxtrot_array = res
+				.getStringArray(R.array.figures_foxtrot);
+		for (int i = 0; i < foxtrot_array.length; i++) {
+
+			cv.put(this.COLUMN_FIGURES_NAME, foxtrot_array[i]);
+			cv.put(this.COLUMN_FIGURES_DANCE_ID, foxtrot_id);
+			db.insert(this.DB_TABLE_FIGURES, null, cv);
+
+		}
+		
+		selectionArgs = new String[] { this.Quickstep };
+
+		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+				+ " = ?";
+
+		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+				null, null, null);
+
+		if (c != null) {
+			if (c.moveToFirst()) {
+
+				do {
+					quickstep_id = c.getInt(c
+							.getColumnIndex(this.COLUMN_DANCES_ID));
+
+				} while (c.moveToNext());
+			}
+			c.close();
+		}
+		;
+
+		String[] quickstep_array = res
+				.getStringArray(R.array.figures_quickstep);
+		for (int i = 0; i < quickstep_array.length; i++) {
+
+			cv.put(this.COLUMN_FIGURES_NAME, quickstep_array[i]);
+			cv.put(this.COLUMN_FIGURES_DANCE_ID, quickstep_id);
 			db.insert(this.DB_TABLE_FIGURES, null, cv);
 
 		}
