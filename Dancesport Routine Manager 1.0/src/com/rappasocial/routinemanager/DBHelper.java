@@ -364,7 +364,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		;
 
 		String[] jive_array = res
-				.getStringArray(R.array.figures_Jive);
+				.getStringArray(R.array.figures_jive);
 		for (int i = 0; i < jive_array.length; i++) {
 
 			cv.put(this.COLUMN_FIGURES_NAME, jive_array[i]);
