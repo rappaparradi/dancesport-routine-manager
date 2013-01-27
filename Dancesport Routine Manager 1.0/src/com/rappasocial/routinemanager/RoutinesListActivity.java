@@ -789,7 +789,7 @@ extApp.editTimingBuffer = source.editTimingBuffer;
 						R.anim.anim_scale);
 				v.startAnimation(animRotate);
 				holder = (ViewHolder) v.getTag();
-				extApp.currentRoutineid = holder.position; // /Very
+				extApp.currentRoutineid = routines.get(holder.position).id; // /Very
 				this.extApp.currentRoutineRawId = holder.position; // very
 				// KRUTO
 				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(

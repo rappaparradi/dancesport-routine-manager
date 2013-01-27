@@ -96,7 +96,7 @@ public class SelectFiguresActivity extends Activity implements OnClickListener,O
 		// String[] selectionArgs = null;
 		// String groupBy = null;
 		// String having = null;
-		// String orderBy = null;
+		String orderBy = extApp.dbHelper.COLUMN_FIGURES_NAME;
 
 		// курсор
 		Cursor c = null;
@@ -112,7 +112,7 @@ public class SelectFiguresActivity extends Activity implements OnClickListener,O
 		}
 
 		c = extApp.db.query(extApp.dbHelper.DB_TABLE_FIGURES, null, selection,
-				null, null, null, null);
+				null, null, null, orderBy);
 
 		if (c != null) {
 			if (c.moveToFirst()) {
