@@ -1,47 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/svscrollViewAddF"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fillViewport="true" >
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:background="@drawable/bg_debut_dark"
     android:gravity="center"
-    android:orientation="vertical"
-    android:background="@drawable/bg_debut_dark" >
+    android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
-        <EditText
-            android:id="@+id/etFifuresName"
-            android:hint="Название"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
 
-            <requestFocus />
-        </EditText>
+            <EditText
+                android:id="@+id/etFifuresName"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Название" >
 
+                <requestFocus />
+            </EditText>
+      
     </LinearLayout>
-    
-   <LinearLayout
-        android:layout_width="match_parent"
+
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
-        <EditText
-            android:id="@+id/etFifuresDescription"
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:hint="Описание"
-            android:inputType="textMultiLine"
-            android:minLines="4" />
+        
 
+            <EditText
+                android:id="@+id/etFifuresDescription"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Описание"
+                android:inputType="textMultiLine"
+                android:minLines="4" />
+        
     </LinearLayout>
 
-   <Button
-       android:id="@+id/btAddnewFigure"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Сохранить" />
+    <Button
+        android:id="@+id/btAddnewFigure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Сохранить" />
 
 </LinearLayout>
+</ScrollView>

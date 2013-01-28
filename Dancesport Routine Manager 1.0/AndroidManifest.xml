@@ -90,8 +90,8 @@
                   android:configChanges="orientation">
         </activity>
         <activity android:name=".AddFigureActivity"
-                  android:theme="@android:style/Theme.Dialog"
-                  android:configChanges="orientation">
+                  android:configChanges="orientation"
+                  android:windowSoftInputMode="adjustResize">
         </activity>
         <activity android:name=".AddRoutineActivity"
                   android:theme="@android:style/Theme.Dialog"
@@ -123,6 +123,9 @@
                   android:configChanges="orientation">
         </activity> 
         <activity android:name=".YTLinkEditActivity"
+                  android:configChanges="orientation">
+        </activity>
+        <activity android:name=".CrudFiguresActivity"
                   android:configChanges="orientation">
         </activity>
         

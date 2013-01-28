@@ -251,11 +251,10 @@ public class RoutinesListActivity extends ListActivity implements
 
 		switch (item.getItemId()) {
 		case R.id.btFigures:
-			startActivity(new Intent(Intent.ACTION_VIEW, 
-                    Uri.parse("http://www.youtube.com/watch?v=LJSlQcRfjUY")));
-//			Intent intent = new Intent(RoutinesListActivity.this,
-//					FiguresManagerActivity.class);
-//			startActivity(intent);
+
+			Intent intent = new Intent(RoutinesListActivity.this,
+					CrudFiguresActivity.class);
+			startActivity(intent);
 			break;
 
 		}
