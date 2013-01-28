@@ -52,7 +52,10 @@
     <string name="login_activity_newaccount_text">Авторизуйтесь</string>
     <string name="login_activity_loginfail_text_pwmissing">Введите пароль</string>
     <string name="pref_key_flag_sex">Пол</string>
-
+    <string name="importstr">Импорт</string>
+    <string name="export">Экспорт</string>
+    <string name="import_dbforimport_notfound">На SD карте в папке dancesport-routine-manager не найдено ни одного файла базы данных с актуальной версией для импорта&#8230;</string>
+    <string name="import_dbforimport_toomanyfiles">На SD карте в папке dancesport-routine-manager оставьте один файл базы данных для импорта&#8230;</string>
     <string-array name="sex_items_titles">
         <item name="Man">Мужской</item>
         <item name="Woman">Женский</item>

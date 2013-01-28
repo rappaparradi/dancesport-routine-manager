@@ -13,7 +13,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	private Context context;
 	private static final String DB_NAME = "routineManagerDB";
-	private static final int DB_VERSION = 1;
+	public static final int DB_VERSION = 1;
 	public static final String DB_TABLE_DANCES = "dances";
 	public static final String DB_TABLE_FIGURES = "figures";
 	public static final String DB_TABLE_ROUTINES = "routines";
