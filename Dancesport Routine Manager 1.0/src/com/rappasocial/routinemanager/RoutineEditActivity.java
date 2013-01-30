@@ -55,12 +55,12 @@ public class RoutineEditActivity extends ListActivity implements
 	Button btNewFigure;
 	LinearLayout llRoutineEditActionPanel;
 	int gender;
-	
+
 	private static final int SWIPE_MIN_DISTANCE = 120;
-    private static final int SWIPE_MAX_OFF_PATH = 250;
-    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-    private GestureDetector gestureDetector;
-    View.OnTouchListener gestureListener;
+	private static final int SWIPE_MAX_OFF_PATH = 250;
+	private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+	private GestureDetector gestureDetector;
+	View.OnTouchListener gestureListener;
 
 	private DragSortListView.DropListener onDrop = new DragSortListView.DropListener() {
 		public void drop(int from, int to) {
@@ -91,10 +91,8 @@ public class RoutineEditActivity extends ListActivity implements
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			this.gender = extras.getInt("gender");
-			
-		}
-		
 
+		}
 
 		extApp = (ExtendedApplication) getApplicationContext();
 
@@ -134,30 +132,30 @@ public class RoutineEditActivity extends ListActivity implements
 
 			llRoutineEditActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_orange));
-			btAddFigures.setBackgroundDrawable(getResources()
-							.getDrawable(R.drawable.custom_button_orange));
-			btNewFigure.setBackgroundDrawable(getResources()
-							.getDrawable(R.drawable.custom_button_orange));
+			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_orange));
+			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_orange));
 			tvCurDanceCharRE.setText("S");
 
 		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.ChaCha) == 0) {
 
 			llRoutineEditActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.bt_bar_blue));
-			btAddFigures.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_blue));
-	        btNewFigure.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_blue));
+			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_blue));
+			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_blue));
 			tvCurDanceCharRE.setText("Ch");
 
 		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Rumba) == 0) {
 
 			llRoutineEditActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_purple));
-			btAddFigures.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_purple));
-	        btNewFigure.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_purple));
+			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_purple));
+			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_purple));
 			tvCurDanceCharRE.setText("R");
 
 		} else if ((curDance.name)
@@ -165,40 +163,40 @@ public class RoutineEditActivity extends ListActivity implements
 
 			llRoutineEditActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_red));
-			btAddFigures.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_red));
-	        btNewFigure.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_red));
+			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_red));
+			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_red));
 			tvCurDanceCharRE.setText("P");
 
 		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Jive) == 0) {
 
 			llRoutineEditActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_yellow));
-			btAddFigures.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_yellow));
-	        btNewFigure.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_yellow));
+			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_yellow));
+			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_yellow));
 			tvCurDanceCharRE.setText("J");
 
 		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Waltz) == 0) {
 
 			llRoutineEditActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_orange));
-			btAddFigures.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_orange));
-	        btNewFigure.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_orange));
+			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_orange));
+			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_orange));
 			tvCurDanceCharRE.setText("W");
 
 		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Tango) == 0) {
 
 			llRoutineEditActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_red));
-			btAddFigures.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_red));
-	        btNewFigure.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_red));
+			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_red));
+			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_red));
 			tvCurDanceCharRE.setText("T");
 
 		} else if ((curDance.name)
@@ -206,20 +204,20 @@ public class RoutineEditActivity extends ListActivity implements
 
 			llRoutineEditActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_purple));
-			btAddFigures.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_purple));
-	        btNewFigure.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_purple));
+			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_purple));
+			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_purple));
 			tvCurDanceCharRE.setText("V");
 
 		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Foxtrot) == 0) {
 
 			llRoutineEditActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_blue));
-			btAddFigures.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_blue));
-	        btNewFigure.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_blue));
+			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_blue));
+			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_blue));
 			tvCurDanceCharRE.setText("F");
 
 		} else if ((curDance.name)
@@ -227,46 +225,52 @@ public class RoutineEditActivity extends ListActivity implements
 
 			llRoutineEditActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_yellow));
-			btAddFigures.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_yellow));
-	        btNewFigure.setBackgroundDrawable(getResources()
-					.getDrawable(R.drawable.custom_button_yellow));
+			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_yellow));
+			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+					R.drawable.custom_button_yellow));
 			tvCurDanceCharRE.setText("Q");
 
 		}
-		
-		TextView tvRoutineTitle = (TextView) findViewById(R.id.tvRoutineTitle); 
-		tvRoutineTitle.setText(extApp.getRoutineNameByID(extApp.currentRoutineid));
-		
+
+		TextView tvRoutineTitle = (TextView) findViewById(R.id.tvRoutineTitle);
+		tvRoutineTitle.setText(extApp
+				.getRoutineNameByID(extApp.currentRoutineid));
+
 		// Gesture detection
-        gestureDetector = new GestureDetector(new MyGestureDetector());
-        gestureListener = new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent event) {
-                return gestureDetector.onTouchEvent(event);
-            }
-        };
+		gestureDetector = new GestureDetector(new MyGestureDetector());
+		gestureListener = new View.OnTouchListener() {
+			public boolean onTouch(View v, MotionEvent event) {
+				return gestureDetector.onTouchEvent(event);
+			}
+		};
 
 	}
-	
+
 	class MyGestureDetector extends SimpleOnGestureListener {
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            try {
-                if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
-                    return false;
-                // right to left swipe
-                if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                    //Toast.makeText(SelectFilterActivity.this, "Left Swipe", Toast.LENGTH_SHORT).show();
-                	onBackPressed();
-                }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                    //Toast.makeText(SelectFilterActivity.this, "Right Swipe", Toast.LENGTH_SHORT).show();
-                }
-            } catch (Exception e) {
-                // nothing
-            }
-            return false;
-        }
-    }
+		@Override
+		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+				float velocityY) {
+			try {
+				if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+					return false;
+				// right to left swipe
+				if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
+						&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+					// Toast.makeText(SelectFilterActivity.this, "Left Swipe",
+					// Toast.LENGTH_SHORT).show();
+					onBackPressed();
+				} else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
+						&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+					// Toast.makeText(SelectFilterActivity.this, "Right Swipe",
+					// Toast.LENGTH_SHORT).show();
+				}
+			} catch (Exception e) {
+				// nothing
+			}
+			return false;
+		}
+	}
 
 	void fillData() {
 
@@ -280,7 +284,7 @@ public class RoutineEditActivity extends ListActivity implements
 
 		// курсор
 		Cursor c = null;
-		
+
 		if (extApp.currentRoutineid != -1) {
 
 			selection = extApp.dbHelper.COLUMN_ROUTINE_RAWS_ROUTINE_ID + " = "
@@ -631,7 +635,7 @@ public class RoutineEditActivity extends ListActivity implements
 		switch (item.getItemId()) {
 		case R.id.btShare:
 			try { // catches IOException below
-				
+
 				String subject = "Dancesport Routine Manager";
 				String body = "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/><html><body><table align=\"center\" border=\"1\" bordercolor=\"#ccc\" cellpadding=\"5\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:10px 0 10px 15px;\">"
 						+ "<thead>"
@@ -641,8 +645,7 @@ public class RoutineEditActivity extends ListActivity implements
 						+ "<th scope=\"col\">Комментарий</th>"
 						+ "<th scope=\"col\">Счет</th>"
 						+ "</tr>"
-						+ "</thead>"
-						+ "<tbody>";
+						+ "</thead>" + "<tbody>";
 				for (int i = 0; i < routine_raws.size(); i++) {
 
 					// cv.put(extApp.dbHelper.COLUMN_ROUTINE_RAWS_ROUTINE_ID,
@@ -656,34 +659,35 @@ public class RoutineEditActivity extends ListActivity implements
 					// cv.put(extApp.dbHelper.COLUMN_ROUTINE_RAWS_GENDER,
 					// routine_raws.get(i).gender);
 					body = body + "<tr>" + "<td>" + htmlrawid + "</td>"
-							+ "<td nowrap=\"wrap\" style=\"width:380px;\">" + htmlfname + "</td>" + "<td>"
-							+ htmlcomment + "</td>" + "<td>" + htmltiming
-							+ "</td>" + "</tr>";
+							+ "<td nowrap=\"wrap\" style=\"width:380px;\">"
+							+ htmlfname + "</td>" + "<td>" + htmlcomment
+							+ "</td>" + "<td>" + htmltiming + "</td>" + "</tr>";
 
 				}
 				;
 
 				body = body + "</tbody>" + "</table></body></html>";
 
-	
-				String strFile = Environment.getExternalStorageDirectory().getAbsolutePath();
+				String strFile = Environment.getExternalStorageDirectory()
+						.getAbsolutePath();
 				File myFile = new File(strFile + "/dsrm_exported.html");
-	            myFile.createNewFile();
-	            FileOutputStream fOut = new FileOutputStream(myFile);
-	            OutputStreamWriter myOutWriter =new OutputStreamWriter(fOut);
-	            myOutWriter.append(body);
-	            myOutWriter.close();
-	            fOut.close();
-//				FileOutputStream fOut = openFileOutput("dsrm_exported.htm",
-
+				myFile.createNewFile();
+				FileOutputStream fOut = new FileOutputStream(myFile);
+				OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+				myOutWriter.append(body);
+				myOutWriter.close();
+				fOut.close();
+				// FileOutputStream fOut = openFileOutput("dsrm_exported.htm",
 
 				final Intent emailIntent = new Intent(
 						android.content.Intent.ACTION_SEND);
 				emailIntent.setType("message/rfc822");
 				emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
 						subject);
-				emailIntent.putExtra(android.content.Intent.EXTRA_TEXT,
-						"Ваш документ в формате html находится во вложении");
+				emailIntent
+						.putExtra(
+								android.content.Intent.EXTRA_TEXT,
+								"Ваш документ в формате html находится во вложении");
 				emailIntent.putExtra(Intent.EXTRA_STREAM,
 						Uri.parse("file://" + strFile + "/dsrm_exported.html"));
 				startActivity(Intent.createChooser(emailIntent, "Email:"));
@@ -708,6 +712,61 @@ public class RoutineEditActivity extends ListActivity implements
 		switch (v.getId()) {
 
 		case R.id.btAddFigures:
+
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+					RoutineEditActivity.this);
+
+			// set title
+//			alertDialogBuilder.setTitle(R.string.deleting);
+			if (this.gender == 1){
+				
+				int dialog_message = R.string.copy_manspart_quest;
+				
+			}
+			else{
+				
+				int dialog_message = R.string.copy_ladyspart_quest;
+				
+			};
+			 
+			// set dialog message
+			alertDialogBuilder
+					.setMessage(R.string.deleting_question)
+					.setCancelable(true)
+					.setPositiveButton(R.string.Yes,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									if (gender == 1){
+										
+										extApp.mRoutine_rawsBufferArray = (ArrayList<RoutineRaw>) extApp.wRoutine_rawsBufferArray.clone();
+										
+									}
+									else{
+										
+										extApp.mRoutine_rawsBufferArray = (ArrayList<RoutineRaw>) extApp.wRoutine_rawsBufferArray.clone();
+										
+									};
+									
+									boxAdapter.notifyDataSetChanged();
+								
+
+								}
+							})
+					.setNegativeButton(R.string.No,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									Intent intent = new Intent(RoutineEditActivity.this, SelectFiguresActivity.class);
+									startActivity(intent);
+								}
+							});
+
+			// create alert dialog
+			AlertDialog alertDialog = alertDialogBuilder.create();
+
+			// show it
+			alertDialog.show();
 
 			Intent intent = new Intent(this, SelectFiguresActivity.class);
 			this.startActivity(intent);
@@ -746,14 +805,13 @@ public class RoutineEditActivity extends ListActivity implements
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK && event
-						.getRepeatCount() == 0) {
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
 
 			this.getParent().onKeyDown(keyCode, event);
 
 			return true;
 		} else {
-			
+
 			return super.onKeyDown(keyCode, event);
 		}
 

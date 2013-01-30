@@ -173,7 +173,9 @@
     <string name="export">Export</string>
     <string name="import_dbforimport_notfound">On SD-card folder dancesport-routine-manager didn\'t find any database file with actual version for import&#8230;</string>
     <string name="import_dbforimport_toomanyfiles">On SD-card folder dancesport-routine-manager leave a single database file for import&#8230;</string>
-
+    <string name="copy_manspart_quest">The Lady\'s part is empty. Would you like to copy the Man\'s?</string>
+    <string name="copy_ladyspart_quest">The Man\'s part is empty. Would you like to copy the Lady\'s?</string>
+    
     <string-array name="sex_items_titles">
         <item name="Man">Man</item>
         <item name="Woman">Woman</item>
