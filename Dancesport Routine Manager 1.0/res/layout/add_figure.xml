@@ -1,40 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-             android:id="@+id/svscrollViewAddF"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:fillViewport="true" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/svscrollViewAddF"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:addStatesFromChildren="false"
+    android:background="@drawable/bg_debut_dark"
+    android:descendantFocusability="beforeDescendants" >
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:background="@drawable/bg_debut_dark"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
+        android:layout_height="fill_parent" >
 
             <EditText
                 android:id="@+id/etFifuresName"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Название" >
+                android:hint="Название"
+                android:maxLines="5">
 
-                <requestFocus />
             </EditText>
       
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        
+        android:layout_height="fill_parent" >
 
             <EditText
                 android:id="@+id/etFifuresDescription"
@@ -42,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="Описание"
+                android:ellipsize="end"
                 android:inputType="textMultiLine"
                 android:minLines="4" />
         

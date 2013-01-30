@@ -91,7 +91,7 @@
         </activity>
         <activity android:name=".AddFigureActivity"
                   android:configChanges="orientation"
-                  android:windowSoftInputMode="adjustResize">
+                  android:windowSoftInputMode="adjustPan">
         </activity>
         <activity android:name=".AddRoutineActivity"
                   android:theme="@android:style/Theme.Dialog"
@@ -126,7 +126,8 @@
                   android:configChanges="orientation">
         </activity>
         <activity android:name=".CrudFiguresActivity"
-                  android:configChanges="orientation">
+                  android:configChanges="orientation"
+                  android:windowSoftInputMode="stateHidden">
         </activity>
         
     </application>

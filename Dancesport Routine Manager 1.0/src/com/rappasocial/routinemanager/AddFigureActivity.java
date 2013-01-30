@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -98,6 +99,9 @@ public class AddFigureActivity extends Activity implements OnClickListener {
 		etFifuresName.setText(this.figure_name_buff);
 		etFifuresDescription = (EditText) findViewById(R.id.etFifuresDescription);
 		etFifuresDescription.setText(this.figure_descr_buff);
+		
+		
+		
 
 		// extApp = (ExtendedApplication) getApplicationContext();
 		//
