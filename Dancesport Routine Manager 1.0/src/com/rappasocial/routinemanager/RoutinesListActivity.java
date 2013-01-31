@@ -273,7 +273,7 @@ public class RoutinesListActivity extends ListActivity implements
 		// String[] selectionArgs = null;
 		// String groupBy = null;
 		// String having = null;
-		// String orderBy = null;
+		String orderBy = extApp.dbHelper.COLUMN_ROUTINES_NAME;
 
 		// РєСѓСЂСЃРѕСЂ
 		Cursor c = null;
@@ -289,7 +289,7 @@ public class RoutinesListActivity extends ListActivity implements
 		}
 
 		c = extApp.db.query(extApp.dbHelper.DB_TABLE_ROUTINES, null, selection,
-				null, null, null, null);
+				null, null, null, orderBy);
 
 		if (c != null) {
 			if (c.moveToFirst()) {

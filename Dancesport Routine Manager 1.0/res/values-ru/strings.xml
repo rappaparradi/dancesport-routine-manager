@@ -71,6 +71,11 @@
     <string name="paste_here">Вставьте сюда ссылку YouTube видео&#8230;</string>
     <string name="edit_tytle">Ред. название</string>
     <string name="edit_routine">Ред. вариацию</string>
+    <string name="thefigure_is_used">Фигура использована в вариациях. Её нельзя удалить&#8230;</string>
+    <string name="figure_added">Фигура добавлена&#8230;</string>
+    <string name="enter_the_name">Введите название&#8230;</string>
+    <string name="copy_manspart_quest">Партия партнерши пуста. Скопировать партию партнера?</string>
+    <string name="copy_ladyspart_quest">Партия партнера пуста. Скопировать партию партнерши?</string>
 
     <string-array name="figures_samba">
         <item>Основные движения с ПН</item>

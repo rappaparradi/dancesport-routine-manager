@@ -2,8 +2,12 @@ package com.rappasocial.routinemanager;
 
 import java.util.ArrayList;
 
+
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -30,9 +34,11 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.TextView.OnEditorActionListener;
 
-public class CrudFiguresActivity extends Activity implements OnClickListener,OnEditorActionListener {
+public class CrudFiguresActivity extends Activity implements OnClickListener,
+		OnEditorActionListener {
 
 	ListView lvMain;
 	Button btSubmitSelectedFigures, btButton_clear;
@@ -42,6 +48,8 @@ public class CrudFiguresActivity extends Activity implements OnClickListener,OnE
 	ExtendedApplication extApp;
 	TextView tvCurDance;
 	EditText etInputSearchFigure;
+	LinearLayout llRoutinesListActionPanel;
+	Button btAddNewFigure, btRLback;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -49,20 +57,21 @@ public class CrudFiguresActivity extends Activity implements OnClickListener,OnE
 
 		lvMain = (ListView) findViewById(R.id.lvSelectFigures);
 
-//		lvMain.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		// lvMain.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
 		figures = new ArrayList<Figure>();
-//		sbArray = new SparseBooleanArray();
+		// sbArray = new SparseBooleanArray();
 		extApp = (ExtendedApplication) getApplicationContext();
 
 		fillData();
 		boxAdapter = new FiguresSelectionAdapter(this, figures, sbArray);
 		lvMain.setAdapter(boxAdapter);
-//		btSubmitSelectedFigures = (Button) findViewById(R.id.btSubmitSelectedFigures);
-//		btSubmitSelectedFigures.setOnClickListener(this);
+		// btSubmitSelectedFigures = (Button)
+		// findViewById(R.id.btSubmitSelectedFigures);
+		// btSubmitSelectedFigures.setOnClickListener(this);
 		btButton_clear = (Button) findViewById(R.id.btButton_clear);
 		btButton_clear.setOnClickListener(this);
-		
+
 		etInputSearchFigure = (EditText) findViewById(R.id.etInputSearchFigure);
 		etInputSearchFigure.addTextChangedListener(new TextWatcher() {
 
@@ -70,7 +79,7 @@ public class CrudFiguresActivity extends Activity implements OnClickListener,OnE
 					int arg3) {
 				// When user changed the Text
 				CrudFiguresActivity.this.boxAdapter.getFilter().filter(cs);
-				
+
 			}
 
 			public void beforeTextChanged(CharSequence arg0, int arg1,
@@ -84,11 +93,130 @@ public class CrudFiguresActivity extends Activity implements OnClickListener,OnE
 			}
 		});
 		etInputSearchFigure.setOnEditorActionListener(this);
+		
+		btAddNewFigure = (Button) findViewById(R.id.btAddNewFigure);
+
+		btAddNewFigure.setOnClickListener(this);
+		
+		btRLback = (Button) findViewById(R.id.btRLback);
+
+		btRLback.setOnClickListener(this);
+
+		Dance curDance = extApp.getcurrentDance();
+
+		llRoutinesListActionPanel = (LinearLayout) findViewById(R.id.llRoutinesListActionPanel);
+
+		TextView tvCurDanceChar = (TextView) findViewById(R.id.tvCurDanceChar);
+
+		if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Samba) == 0) {
+
+			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.action_panel_bg_orange));
+			btAddNewFigure.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_orange));
+			btRLback.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_orange));
+			tvCurDanceChar.setText("S");
+
+		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.ChaCha) == 0) {
+
+			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.action_panel_bg_blue));
+			btAddNewFigure.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_blue));
+			btRLback.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_blue));
+			tvCurDanceChar.setText("Ch");
+
+		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Rumba) == 0) {
+
+			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.action_panel_bg_purple));
+			btAddNewFigure.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_purple));
+			btRLback.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_purple));
+			tvCurDanceChar.setText("R");
+
+		} else if ((curDance.name)
+				.compareToIgnoreCase(extApp.dbHelper.PasoDoble) == 0) {
+
+			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.action_panel_bg_red));
+			btAddNewFigure.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_red));
+			btRLback.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_red));
+			tvCurDanceChar.setText("P");
+
+		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Jive) == 0) {
+
+			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.action_panel_bg_yellow));
+			btAddNewFigure.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_yellow));
+			btRLback.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_yellow));
+			tvCurDanceChar.setText("J");
+
+		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Waltz) == 0) {
+
+			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.action_panel_bg_orange));
+			btAddNewFigure.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_orange));
+			btRLback.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_orange));
+			tvCurDanceChar.setText("W");
+
+		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Tango) == 0) {
+
+			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.action_panel_bg_red));
+			btAddNewFigure.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_red));
+			btRLback.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_red));
+			tvCurDanceChar.setText("T");
+
+		} else if ((curDance.name)
+				.compareToIgnoreCase(extApp.dbHelper.VienneseWaltz) == 0) {
+
+			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.action_panel_bg_purple));
+			btAddNewFigure.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_purple));
+			btRLback.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_purple));
+			tvCurDanceChar.setText("V");
+
+		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Foxtrot) == 0) {
+
+			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.action_panel_bg_blue));
+			btAddNewFigure.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_blue));
+			btRLback.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_blue));
+			tvCurDanceChar.setText("F");
+
+		} else if ((curDance.name)
+				.compareToIgnoreCase(extApp.dbHelper.Quickstep) == 0) {
+
+			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.action_panel_bg_yellow));
+			btAddNewFigure.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_yellow));
+			btRLback.setBackgroundDrawable(getResources()
+					.getDrawable(R.drawable.custom_button_yellow));
+			tvCurDanceChar.setText("Q");
+
+		}
 		// chbFigureSelect
 		// // получаем массив из файла ресурсов
 		// names = getResources().getStringArray(R.array.names);
 	}
-	
+
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
@@ -148,28 +276,72 @@ public class CrudFiguresActivity extends Activity implements OnClickListener,OnE
 		// dbHelper.close();
 
 	}
+	
+	boolean isFigureUsed(int figure_id) {
+
+		// переменные для query
+		// String[] columns = null;
+		String selection = null;
+		// String[] selectionArgs = null;
+		// String groupBy = null;
+		// String having = null;
+		//String orderBy = extApp.dbHelper.COLUMN_FIGURES_NAME;
+
+		// курсор
+		Cursor c = null;
+		Dance curDance = extApp.getcurrentDance();
+		if (curDance != null) {
+
+			selection = extApp.dbHelper.COLUMN_ROUTINE_RAWS_FIGURE_ID + " = "
+					+ figure_id;
+
+		} else {
+
+			selection = null;
+		}
+
+		c = extApp.db.query(extApp.dbHelper.DB_TABLE_ROUTINE_RAWS, null, selection,
+				null, null, null, null);
+
+		if (c != null) {
+			
+			if (!c.moveToFirst()){
+				
+				return false;
+				
+			} else {
+				
+				return true;
+			}
+			
+		} else return false;
+
+		// dbHelper.close();
+
+	}
 
 	public void onClick(View v) {
 
 		switch (v.getId()) {
 
-		case R.id.btSubmitSelectedFigures:
-			extApp.figuresSelectionBufferArray.clear();
-			for (int i = 0; i < sbArray.size(); i++) {
-				int key = sbArray.keyAt(i);
-				if (sbArray.get(key)) {
-					extApp.figuresSelectionBufferArray.add(figures.get(key));
-				}
-			}
-			this.finish();
+		case R.id.btAddNewFigure:
+
+			Intent intent = new Intent(CrudFiguresActivity.this,
+					AddFigureActivity.class);
+			intent.putExtra("editmode", false);
+			startActivity(intent);
 			break;
 		case R.id.btButton_clear:
-			
+
 			etInputSearchFigure.setText("");
 
-			
 			break;
 			
+		case R.id.btRLback:
+
+			onBackPressed();
+			break;
+
 		}
 
 	}
@@ -183,7 +355,7 @@ public class CrudFiguresActivity extends Activity implements OnClickListener,OnE
 		ExtendedApplication extApp;
 		CheckBox chbFigureSelect;
 		Button btSubmitSelectedFigures, btButton_clear;
-//		SparseBooleanArray sbArray;
+		// SparseBooleanArray sbArray;
 		LinearLayout llSelectFiguresClickable;
 
 		FiguresSelectionAdapter(Context context, ArrayList<Figure> figures,
@@ -192,8 +364,8 @@ public class CrudFiguresActivity extends Activity implements OnClickListener,OnE
 			objects = figures;
 			lInflater = (LayoutInflater) ctx
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//			sbArray = _sbArray;
-			extApp = (ExtendedApplication)ctx.getApplicationContext();
+			// sbArray = _sbArray;
+			extApp = (ExtendedApplication) ctx.getApplicationContext();
 
 		}
 
@@ -209,7 +381,6 @@ public class CrudFiguresActivity extends Activity implements OnClickListener,OnE
 			return position;
 		}
 
-		
 		public Filter getFilter() {
 
 			Filter filter = new Filter() {
@@ -221,7 +392,7 @@ public class CrudFiguresActivity extends Activity implements OnClickListener,OnE
 
 					objects = (ArrayList<Figure>) results.values;
 					figures = (ArrayList<Figure>) results.values;
-//					CrudFiguresActivity.this.sbArray.clear();
+					// CrudFiguresActivity.this.sbArray.clear();
 					CrudFiguresActivity.this.boxAdapter.notifyDataSetChanged();
 				}
 
@@ -248,10 +419,9 @@ public class CrudFiguresActivity extends Activity implements OnClickListener,OnE
 						}
 
 						results.count = FilteredArrayfigures.size();
-						
 
 						results.values = FilteredArrayfigures;
-						
+
 					}
 
 					return results;
@@ -270,26 +440,30 @@ public class CrudFiguresActivity extends Activity implements OnClickListener,OnE
 			}
 
 			Figure p = getFigure(position);
-//			chbFigureSelect = (CheckBox) view
-//					.findViewById(R.id.chbFigureSelect);
-//			chbFigureSelect.setTag(position);
-//			chbFigureSelect.setOnClickListener(this);
-			Button btEditRoutine = (Button) view.findViewById(R.id.btEditRoutine);
+			// chbFigureSelect = (CheckBox) view
+			// .findViewById(R.id.chbFigureSelect);
+			// chbFigureSelect.setTag(position);
+			// chbFigureSelect.setOnClickListener(this);
+			Button btEditRoutine = (Button) view
+					.findViewById(R.id.btEditRoutine);
 			btEditRoutine.setTag(position);
 			btEditRoutine.setOnClickListener(this);
-			
-			llSelectFiguresClickable = (LinearLayout) view.findViewById(R.id.llSelectFiguresClickable);
-			llSelectFiguresClickable.setTag(position);
-			llSelectFiguresClickable.setOnClickListener(this);
-			
+
 			ImageButton btDeleteRoutine = (ImageButton) view
 					.findViewById(R.id.btDeleteRoutine);
-			btDeleteRoutine.setTag(view.getTag());
+			btDeleteRoutine.setTag(position);
 			btDeleteRoutine.setOnClickListener(this);
+
+			llSelectFiguresClickable = (LinearLayout) view
+					.findViewById(R.id.llSelectFiguresClickable);
+			llSelectFiguresClickable.setTag(position);
+			llSelectFiguresClickable.setOnClickListener(this);
+
 			
+
 			((TextView) view.findViewById(R.id.tvFigureName)).setText(p.name);
 
-//			chbFigureSelect.setChecked(sbArray.get(position));
+			// chbFigureSelect.setChecked(sbArray.get(position));
 
 			return view;
 		}
@@ -306,22 +480,84 @@ public class CrudFiguresActivity extends Activity implements OnClickListener,OnE
 				Intent intent = new Intent(CrudFiguresActivity.this,
 						AddFigureActivity.class);
 				intent.putExtra("editmode", true);
-				
-				intent.putExtra("figure_name_buff", figures.get((Integer) arg0.getTag()).name);
-				intent.putExtra("cur_figure_id", figures.get((Integer) arg0.getTag()).id);
-				intent.putExtra("figure_descr_buff", figures.get((Integer) arg0.getTag()).description);
-				
-				
+
+				intent.putExtra("figure_name_buff",
+						figures.get((Integer) arg0.getTag()).name);
+				intent.putExtra("cur_figure_id",
+						figures.get((Integer) arg0.getTag()).id);
+				intent.putExtra("figure_descr_buff",
+						figures.get((Integer) arg0.getTag()).description);
+
 				ctx.startActivity(intent);
 
 				break;
+			case R.id.btDeleteRoutine:
+				Animation animRotate = AnimationUtils.loadAnimation(ctx,
+						R.anim.anim_scale);
+				arg0.startAnimation(animRotate);
+				
+				this.extApp.currentRoutineid = figures.get((Integer) arg0.getTag()).id; // /Very
+				this.extApp.currentRoutineRawId = (Integer) arg0.getTag(); // very
+				// KRUTO
+				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+						CrudFiguresActivity.this);
 
+				// set title
+				alertDialogBuilder.setTitle(R.string.deleting);
+
+				// set dialog message
+				alertDialogBuilder
+						.setMessage(R.string.deleting_question)
+						.setCancelable(true)
+						.setPositiveButton(R.string.Yes,
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+										if (isFigureUsed(extApp.currentRoutineid)) {
+											Context context = getApplicationContext();
+											CharSequence text = getString(R.string.thefigure_is_used);
+											int duration = Toast.LENGTH_SHORT;
+											Toast.makeText(context, text, duration)
+													.show();
+										}
+										else {
+										DeleteCurrentFigure();
+										Context context = getApplicationContext();
+										CharSequence text = getString(R.string.Deleted);
+										int duration = Toast.LENGTH_SHORT;
+										Toast.makeText(context, text, duration)
+												.show();}
+
+									}
+								})
+						.setNegativeButton(R.string.No,
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+
+									}
+								});
+
+				// create alert dialog
+				AlertDialog alertDialog = alertDialogBuilder.create();
+
+				// show it
+				alertDialog.show();
+				break;
 			case R.id.llSelectFiguresClickable:
 
-//				if (sbArray.get((Integer) arg0.getTag()) == false)
-//					sbArray.put((Integer) arg0.getTag(), true);
-//				else
-//					sbArray.put((Integer) arg0.getTag(), false);
+				intent = new Intent(CrudFiguresActivity.this,
+						AddFigureActivity.class);
+				intent.putExtra("editmode", true);
+
+				intent.putExtra("figure_name_buff",
+						figures.get((Integer) arg0.getTag()).name);
+				intent.putExtra("cur_figure_id",
+						figures.get((Integer) arg0.getTag()).id);
+				intent.putExtra("figure_descr_buff",
+						figures.get((Integer) arg0.getTag()).description);
+
+				ctx.startActivity(intent);
 				this.notifyDataSetChanged();
 				break;
 
@@ -332,17 +568,29 @@ public class CrudFiguresActivity extends Activity implements OnClickListener,OnE
 	}
 
 	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-		if ( (event.getAction() == KeyEvent.ACTION_DOWN  ) &&
-	             (event.getKeyCode()           == KeyEvent.KEYCODE_ENTER)   )
-	        {               
-	           // hide virtual keyboard
-	           InputMethodManager imm = 
-	              (InputMethodManager)getBaseContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-	           imm.hideSoftInputFromWindow(etInputSearchFigure.getWindowToken(), 0);
-	           return true;
-	        }
-	        return false;
+		if ((event.getAction() == KeyEvent.ACTION_DOWN)
+				&& (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+			// hide virtual keyboard
+			InputMethodManager imm = (InputMethodManager) getBaseContext()
+					.getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(etInputSearchFigure.getWindowToken(), 0);
+			return true;
+		}
+		return false;
+
+	}
+	
+	void DeleteCurrentFigure() {
 		
+		
+
+		extApp.db.delete(extApp.dbHelper.DB_TABLE_FIGURES,
+				extApp.dbHelper.COLUMN_FIGURES_ID + "="
+						+ extApp.currentRoutineid, null);
+		
+		figures.remove(extApp.currentRoutineRawId);
+		boxAdapter.notifyDataSetChanged();
+
 	}
 
 }

@@ -390,7 +390,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			if (c.moveToFirst()) {
 
 				do {
-					jive_id = c.getInt(c
+					waltz_id = c.getInt(c
 							.getColumnIndex(this.COLUMN_DANCES_ID));
 
 				} while (c.moveToNext());

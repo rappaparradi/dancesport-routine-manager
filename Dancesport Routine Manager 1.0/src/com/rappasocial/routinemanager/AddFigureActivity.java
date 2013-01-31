@@ -30,20 +30,30 @@ public class AddFigureActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btAddnewFigure:
+			
+			String locFiguresName = etFifuresName
+					.getText().toString().trim();
+			if (locFiguresName.length() == 0){
+				
+				Context context = getApplicationContext();
+				CharSequence text = getString(R.string.enter_the_name);
+				int duration = Toast.LENGTH_SHORT;
+				Toast.makeText(context, text, duration).show();
+				
+				return;
+			}
 
 			if (!editmode) {
 				ContentValues cv = new ContentValues();
 
-				cv.put(extApp.dbHelper.COLUMN_FIGURES_NAME, etFifuresName
-						.getText().toString());
+				cv.put(extApp.dbHelper.COLUMN_FIGURES_NAME, locFiguresName);
 				cv.put(extApp.dbHelper.COLUMN_FIGURES_DESCRIPTION,
 						etFifuresDescription.getText().toString());
 				cv.put(extApp.dbHelper.COLUMN_FIGURES_DANCE_ID,
 						extApp.getcurrentDance().id);
 				extApp.db.insert(extApp.dbHelper.DB_TABLE_FIGURES, null, cv);
 				Context context = getApplicationContext();
-				CharSequence text = "Фигура '"
-						+ etFifuresName.getText().toString() + "' добавлена";
+				CharSequence text = getString(R.string.figure_added);
 				int duration = Toast.LENGTH_SHORT;
 				Toast.makeText(context, text, duration).show();
 				finish();
@@ -52,8 +62,7 @@ public class AddFigureActivity extends Activity implements OnClickListener {
 
 				ContentValues cv = new ContentValues();
 
-				cv.put(extApp.dbHelper.COLUMN_FIGURES_NAME, etFifuresName
-						.getText().toString());
+				cv.put(extApp.dbHelper.COLUMN_FIGURES_NAME, locFiguresName);
 				cv.put(extApp.dbHelper.COLUMN_FIGURES_DESCRIPTION,
 						etFifuresDescription.getText().toString());
 				cv.put(extApp.dbHelper.COLUMN_FIGURES_DANCE_ID,

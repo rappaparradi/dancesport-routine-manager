@@ -14,7 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.TextView.OnEditorActionListener;
 
-public class AddRoutineActivity extends Activity implements OnClickListener, OnEditorActionListener {
+public class AddRoutineActivity extends Activity implements OnClickListener,
+		OnEditorActionListener {
 
 	ExtendedApplication extApp;
 	EditText etRoutinesName;
@@ -27,11 +28,21 @@ public class AddRoutineActivity extends Activity implements OnClickListener, OnE
 		switch (v.getId()) {
 		case R.id.btAddnewRoutine:
 
+			String locRoutineName = etRoutinesName.getText().toString().trim();
+			if (locRoutineName.length() == 0) {
+
+				Context context = getApplicationContext();
+				CharSequence text = getString(R.string.enter_the_name);
+				int duration = Toast.LENGTH_SHORT;
+				Toast.makeText(context, text, duration).show();
+				
+				return;
+			}
+
 			if (!editmode) {
 				ContentValues cv = new ContentValues();
 
-				cv.put(extApp.dbHelper.COLUMN_ROUTINES_NAME, etRoutinesName
-						.getText().toString());
+				cv.put(extApp.dbHelper.COLUMN_ROUTINES_NAME, locRoutineName);
 
 				cv.put(extApp.dbHelper.COLUMN_ROUTINES_DANCE_ID,
 						extApp.getcurrentDance().id);
@@ -52,17 +63,17 @@ public class AddRoutineActivity extends Activity implements OnClickListener, OnE
 				finish();
 				break;
 			} else {
-				
+
 				ContentValues cv = new ContentValues();
 
-				cv.put(extApp.dbHelper.COLUMN_ROUTINES_NAME, etRoutinesName
-						.getText().toString());
-
+				cv.put(extApp.dbHelper.COLUMN_ROUTINES_NAME, locRoutineName);
 
 				cv.put(extApp.dbHelper.COLUMN_ROUTINES_MODIFIED_ON,
 						System.currentTimeMillis());
 
-				extApp.db.update(extApp.dbHelper.DB_TABLE_ROUTINES, cv, extApp.dbHelper.COLUMN_ROUTINES_ID + "=" + this.cur_routine_id, null);
+				extApp.db.update(extApp.dbHelper.DB_TABLE_ROUTINES, cv,
+						extApp.dbHelper.COLUMN_ROUTINES_ID + "="
+								+ this.cur_routine_id, null);
 				Context context = getApplicationContext();
 				CharSequence text = getString(R.string.Routine) + " '"
 						+ etRoutinesName.getText().toString() + "' "
@@ -81,39 +92,37 @@ public class AddRoutineActivity extends Activity implements OnClickListener, OnE
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_routine);
-		Bundle extras = getIntent().getExtras(); 
-		   if(extras !=null)
-		   {
-			   this.editmode = extras.getBoolean("editmode");
-			   this.routines_name_buff = extras.getString("routines_name_buff");
-			   this.cur_routine_id = extras.getInt("cur_routine_id");
-		   }
-		
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			this.editmode = extras.getBoolean("editmode");
+			this.routines_name_buff = extras.getString("routines_name_buff");
+			this.cur_routine_id = extras.getInt("cur_routine_id");
+		}
+
 		extApp = (ExtendedApplication) getApplicationContext();
 
 		etRoutinesName = (EditText) findViewById(R.id.etRoutinesName);
-		
+
 		etRoutinesName.setText(this.routines_name_buff);
-		
+
 		btAddnewRoutine = (Button) findViewById(R.id.btAddnewRoutine);
 		btAddnewRoutine.setOnClickListener(this);
-		
+
 		etRoutinesName.setOnEditorActionListener(this);
 
 	}
-	
+
 	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-		if ( (event.getAction() == KeyEvent.ACTION_DOWN  ) &&
-	             (event.getKeyCode()           == KeyEvent.KEYCODE_ENTER)   )
-	        {               
-	           // hide virtual keyboard
-	           InputMethodManager imm = 
-	              (InputMethodManager)getBaseContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-	           imm.hideSoftInputFromWindow(etRoutinesName.getWindowToken(), 0);
-	           return true;
-	        }
-	        return false;
-		
+		if ((event.getAction() == KeyEvent.ACTION_DOWN)
+				&& (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+			// hide virtual keyboard
+			InputMethodManager imm = (InputMethodManager) getBaseContext()
+					.getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(etRoutinesName.getWindowToken(), 0);
+			return true;
+		}
+		return false;
+
 	}
 
 }

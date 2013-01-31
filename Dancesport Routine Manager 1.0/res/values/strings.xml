@@ -175,6 +175,9 @@
     <string name="import_dbforimport_toomanyfiles">On SD-card folder dancesport-routine-manager leave a single database file for import&#8230;</string>
     <string name="copy_manspart_quest">The Lady\'s part is empty. Would you like to copy the Man\'s?</string>
     <string name="copy_ladyspart_quest">The Man\'s part is empty. Would you like to copy the Lady\'s?</string>
+    <string name="thefigure_is_used">Unable to delete. The figure is used in your routines&#8230;</string>
+    <string name="figure_added">Figure added&#8230;</string>
+    <string name="enter_the_name">Enter the name, please&#8230;</string>
     
     <string-array name="sex_items_titles">
         <item name="Man">Man</item>

@@ -50,9 +50,8 @@ public class RoutineEditActivity extends ListActivity implements
 	BoxAdapterRoutineRaw boxAdapter;
 	ExtendedApplication extApp;
 	TextView tvCurDanceCharRE, tvRoutineTitle;
-	Button btAddFigures;
+	Button btAddFigures, btRLback;
 	DragSortListView lvRoutineRaws;
-	Button btNewFigure;
 	LinearLayout llRoutineEditActionPanel;
 	int gender;
 
@@ -118,9 +117,9 @@ public class RoutineEditActivity extends ListActivity implements
 
 		btAddFigures.setOnClickListener(this);
 
-		btNewFigure = (Button) findViewById(R.id.btNewFigure);
+		btRLback = (Button) findViewById(R.id.btRLback);
 
-		btNewFigure.setOnClickListener(this);
+		btRLback.setOnClickListener(this);
 
 		Dance curDance = extApp.getcurrentDance();
 
@@ -134,7 +133,7 @@ public class RoutineEditActivity extends ListActivity implements
 					.getDrawable(R.drawable.action_panel_bg_orange));
 			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_orange));
-			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+			btRLback.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_orange));
 			tvCurDanceCharRE.setText("S");
 
@@ -144,7 +143,7 @@ public class RoutineEditActivity extends ListActivity implements
 					.getDrawable(R.drawable.bt_bar_blue));
 			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_blue));
-			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+			btRLback.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_blue));
 			tvCurDanceCharRE.setText("Ch");
 
@@ -154,7 +153,7 @@ public class RoutineEditActivity extends ListActivity implements
 					.getDrawable(R.drawable.action_panel_bg_purple));
 			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_purple));
-			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+			btRLback.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_purple));
 			tvCurDanceCharRE.setText("R");
 
@@ -165,7 +164,7 @@ public class RoutineEditActivity extends ListActivity implements
 					.getDrawable(R.drawable.action_panel_bg_red));
 			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_red));
-			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+			btRLback.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_red));
 			tvCurDanceCharRE.setText("P");
 
@@ -175,7 +174,7 @@ public class RoutineEditActivity extends ListActivity implements
 					.getDrawable(R.drawable.action_panel_bg_yellow));
 			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_yellow));
-			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+			btRLback.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_yellow));
 			tvCurDanceCharRE.setText("J");
 
@@ -185,7 +184,7 @@ public class RoutineEditActivity extends ListActivity implements
 					.getDrawable(R.drawable.action_panel_bg_orange));
 			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_orange));
-			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+			btRLback.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_orange));
 			tvCurDanceCharRE.setText("W");
 
@@ -195,7 +194,7 @@ public class RoutineEditActivity extends ListActivity implements
 					.getDrawable(R.drawable.action_panel_bg_red));
 			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_red));
-			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+			btRLback.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_red));
 			tvCurDanceCharRE.setText("T");
 
@@ -206,7 +205,7 @@ public class RoutineEditActivity extends ListActivity implements
 					.getDrawable(R.drawable.action_panel_bg_purple));
 			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_purple));
-			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+			btRLback.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_purple));
 			tvCurDanceCharRE.setText("V");
 
@@ -216,7 +215,7 @@ public class RoutineEditActivity extends ListActivity implements
 					.getDrawable(R.drawable.action_panel_bg_blue));
 			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_blue));
-			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+			btRLback.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_blue));
 			tvCurDanceCharRE.setText("F");
 
@@ -227,7 +226,7 @@ public class RoutineEditActivity extends ListActivity implements
 					.getDrawable(R.drawable.action_panel_bg_yellow));
 			btAddFigures.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_yellow));
-			btNewFigure.setBackgroundDrawable(getResources().getDrawable(
+			btRLback.setBackgroundDrawable(getResources().getDrawable(
 					R.drawable.custom_button_yellow));
 			tvCurDanceCharRE.setText("Q");
 
@@ -715,37 +714,56 @@ public class RoutineEditActivity extends ListActivity implements
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 					RoutineEditActivity.this);
+            if (routine_raws.size() == 0){
+            	
+            	if ((extApp.currentGender == 1 &&  extApp.wRoutine_rawsBufferArray.size() == 0)
+            			|| (extApp.currentGender == 0 &&  extApp.mRoutine_rawsBufferArray.size() == 0)){
+    				
+            		Intent intent = new Intent(this, SelectFiguresActivity.class);
+        			this.startActivity(intent);
+        			return;
+    				
+    			};
+            }
+            else {
+            	
+            	Intent intent = new Intent(this, SelectFiguresActivity.class);
+    			this.startActivity(intent);
+    			return;
+            }
+			
 
 			// set title
 //			alertDialogBuilder.setTitle(R.string.deleting);
-			if (this.gender == 1){
+			int dialog_message = 0;
+			if (extApp.currentGender == 1){
 				
-				int dialog_message = R.string.copy_manspart_quest;
+				dialog_message = R.string.copy_ladyspart_quest;
 				
 			}
 			else{
 				
-				int dialog_message = R.string.copy_ladyspart_quest;
+				dialog_message = R.string.copy_manspart_quest;
 				
 			};
 			 
 			// set dialog message
 			alertDialogBuilder
-					.setMessage(R.string.deleting_question)
+					.setMessage(dialog_message)
 					.setCancelable(true)
 					.setPositiveButton(R.string.Yes,
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int id) {
-									if (gender == 1){
+									if (extApp.currentGender == 1){
 										
-										extApp.mRoutine_rawsBufferArray = (ArrayList<RoutineRaw>) extApp.wRoutine_rawsBufferArray.clone();
-										
+										extApp.mRoutine_rawsBufferArray.addAll((ArrayList<RoutineRaw>) extApp.wRoutine_rawsBufferArray);
+										routine_raws = extApp.mRoutine_rawsBufferArray;
 									}
 									else{
 										
-										extApp.mRoutine_rawsBufferArray = (ArrayList<RoutineRaw>) extApp.wRoutine_rawsBufferArray.clone();
-										
+										extApp.wRoutine_rawsBufferArray.addAll((ArrayList<RoutineRaw>) extApp.mRoutine_rawsBufferArray);
+										routine_raws = extApp.wRoutine_rawsBufferArray;
 									};
 									
 									boxAdapter.notifyDataSetChanged();
@@ -768,14 +786,13 @@ public class RoutineEditActivity extends ListActivity implements
 			// show it
 			alertDialog.show();
 
-			Intent intent = new Intent(this, SelectFiguresActivity.class);
-			this.startActivity(intent);
+//			Intent intent = new Intent(this, SelectFiguresActivity.class);
+//			this.startActivity(intent);
 			break;
 
-		case R.id.btNewFigure:
+		case R.id.btRLback:
 
-			intent = new Intent(this, AddFigureActivity.class);
-			this.startActivity(intent);
+			onBackPressed();
 			break;
 
 		}
