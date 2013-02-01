@@ -270,6 +270,35 @@ public class RoutineEditActivity extends ListActivity implements
 			return false;
 		}
 	}
+	
+	void copyPartnersPart() {
+		
+		if (this.gender == 1){
+			
+			extApp.mRoutine_rawsBufferArray.addAll((ArrayList<RoutineRaw>) extApp.wRoutine_rawsBufferArray.clone());
+			
+			
+			for (int i = 0; i < extApp.mRoutine_rawsBufferArray.size(); i++) {
+
+				extApp.mRoutine_rawsBufferArray.get(i).gender = this.gender;
+
+			}
+		}
+		else{
+			
+			extApp.wRoutine_rawsBufferArray.addAll((ArrayList<RoutineRaw>) extApp.mRoutine_rawsBufferArray.clone());
+			
+			for (int i = 0; i < extApp.wRoutine_rawsBufferArray.size(); i++) {
+
+				extApp.wRoutine_rawsBufferArray.get(i).gender = this.gender;
+
+			}
+		};
+		extApp.isRoutineModified = true;
+		boxAdapter.notifyDataSetChanged();
+
+		
+	}
 
 	void fillData() {
 
@@ -755,18 +784,7 @@ public class RoutineEditActivity extends ListActivity implements
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int id) {
-									if (extApp.currentGender == 1){
-										
-										extApp.mRoutine_rawsBufferArray.addAll((ArrayList<RoutineRaw>) extApp.wRoutine_rawsBufferArray);
-										routine_raws = extApp.mRoutine_rawsBufferArray;
-									}
-									else{
-										
-										extApp.wRoutine_rawsBufferArray.addAll((ArrayList<RoutineRaw>) extApp.mRoutine_rawsBufferArray);
-										routine_raws = extApp.wRoutine_rawsBufferArray;
-									};
-									
-									boxAdapter.notifyDataSetChanged();
+									copyPartnersPart();
 								
 
 								}
