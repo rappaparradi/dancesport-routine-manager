@@ -22,6 +22,18 @@ public class RoutineRaw {
 		
 	}
 	
+    RoutineRaw(RoutineRaw obj) {
+		
+		id = obj.id;
+		routine_id = obj.routine_id;
+		figure_id = obj.figure_id;
+		timing = obj.timing;
+		comment = obj.comment;
+		weihgt = obj.weihgt;
+		gender = obj.gender;
+		
+	}
+	
     RoutineRaw(int _figure_id) {
 		
 

@@ -270,34 +270,55 @@ public class RoutineEditActivity extends ListActivity implements
 			return false;
 		}
 	}
-	
+
 	void copyPartnersPart() {
-		
-		if (this.gender == 1){
-			
-			extApp.mRoutine_rawsBufferArray.addAll((ArrayList<RoutineRaw>) extApp.wRoutine_rawsBufferArray.clone());
-			
+
+		if (this.gender == 1) {
+
+			// routine_raws.addAll(new (ArrayList<RoutineRaw>)
+			// extApp.wRoutine_rawsBufferArray.clone());
+
+			for (int i = 0; i < extApp.wRoutine_rawsBufferArray.size(); i++) {
+
+				routine_raws.add(new RoutineRaw(extApp.wRoutine_rawsBufferArray.get(i)));
+				
+
+			}
+
+			for (int i = 0; i < routine_raws.size(); i++) {
+
+				routine_raws.get(i).gender = this.gender;
+
+			}
+		} else {
+
+//			routine_raws
+//					.addAll((ArrayList<RoutineRaw>) extApp.mRoutine_rawsBufferArray
+//							.clone());
+//
+//			for (int i = 0; i < routine_raws.size(); i++) {
+//
+//				routine_raws.get(i).gender = this.gender;
+//
+//			}
 			
 			for (int i = 0; i < extApp.mRoutine_rawsBufferArray.size(); i++) {
 
-				extApp.mRoutine_rawsBufferArray.get(i).gender = this.gender;
+				routine_raws.add(new RoutineRaw(extApp.mRoutine_rawsBufferArray.get(i)));
+				
+
+			}
+
+			for (int i = 0; i < routine_raws.size(); i++) {
+
+				routine_raws.get(i).gender = this.gender;
 
 			}
 		}
-		else{
-			
-			extApp.wRoutine_rawsBufferArray.addAll((ArrayList<RoutineRaw>) extApp.mRoutine_rawsBufferArray.clone());
-			
-			for (int i = 0; i < extApp.wRoutine_rawsBufferArray.size(); i++) {
-
-				extApp.wRoutine_rawsBufferArray.get(i).gender = this.gender;
-
-			}
-		};
+		;
 		extApp.isRoutineModified = true;
 		boxAdapter.notifyDataSetChanged();
 
-		
 	}
 
 	void fillData() {
@@ -743,39 +764,41 @@ public class RoutineEditActivity extends ListActivity implements
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 					RoutineEditActivity.this);
-            if (routine_raws.size() == 0){
-            	
-            	if ((extApp.currentGender == 1 &&  extApp.wRoutine_rawsBufferArray.size() == 0)
-            			|| (extApp.currentGender == 0 &&  extApp.mRoutine_rawsBufferArray.size() == 0)){
-    				
-            		Intent intent = new Intent(this, SelectFiguresActivity.class);
-        			this.startActivity(intent);
-        			return;
-    				
-    			};
-            }
-            else {
-            	
-            	Intent intent = new Intent(this, SelectFiguresActivity.class);
-    			this.startActivity(intent);
-    			return;
-            }
-			
+			if (routine_raws.size() == 0) {
+
+				if ((extApp.currentGender == 1 && extApp.wRoutine_rawsBufferArray
+						.size() == 0)
+						|| (extApp.currentGender == 0 && extApp.mRoutine_rawsBufferArray
+								.size() == 0)) {
+
+					Intent intent = new Intent(this,
+							SelectFiguresActivity.class);
+					this.startActivity(intent);
+					return;
+
+				}
+				;
+			} else {
+
+				Intent intent = new Intent(this, SelectFiguresActivity.class);
+				this.startActivity(intent);
+				return;
+			}
 
 			// set title
-//			alertDialogBuilder.setTitle(R.string.deleting);
+			// alertDialogBuilder.setTitle(R.string.deleting);
 			int dialog_message = 0;
-			if (extApp.currentGender == 1){
-				
+			if (extApp.currentGender == 1) {
+
 				dialog_message = R.string.copy_ladyspart_quest;
-				
-			}
-			else{
-				
+
+			} else {
+
 				dialog_message = R.string.copy_manspart_quest;
-				
-			};
-			 
+
+			}
+			;
+
 			// set dialog message
 			alertDialogBuilder
 					.setMessage(dialog_message)
@@ -785,7 +808,6 @@ public class RoutineEditActivity extends ListActivity implements
 								public void onClick(DialogInterface dialog,
 										int id) {
 									copyPartnersPart();
-								
 
 								}
 							})
@@ -793,7 +815,9 @@ public class RoutineEditActivity extends ListActivity implements
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int id) {
-									Intent intent = new Intent(RoutineEditActivity.this, SelectFiguresActivity.class);
+									Intent intent = new Intent(
+											RoutineEditActivity.this,
+											SelectFiguresActivity.class);
 									startActivity(intent);
 								}
 							});
@@ -804,13 +828,14 @@ public class RoutineEditActivity extends ListActivity implements
 			// show it
 			alertDialog.show();
 
-//			Intent intent = new Intent(this, SelectFiguresActivity.class);
-//			this.startActivity(intent);
+			// Intent intent = new Intent(this, SelectFiguresActivity.class);
+			// this.startActivity(intent);
 			break;
 
 		case R.id.btRLback:
-
-			onBackPressed();
+			
+			KeyEvent ke = new KeyEvent(0,0,KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_BACK,0,0);
+			onKeyDown(KeyEvent.KEYCODE_BACK, ke);
 			break;
 
 		}

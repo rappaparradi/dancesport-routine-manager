@@ -462,7 +462,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		;
 
 		String[] viennese_waltz_array = res
-				.getStringArray(R.array.figures_jive);
+				.getStringArray(R.array.figures_viennese_waltz);
 		for (int i = 0; i < viennese_waltz_array.length; i++) {
 
 			cv.put(this.COLUMN_FIGURES_NAME, viennese_waltz_array[i]);
