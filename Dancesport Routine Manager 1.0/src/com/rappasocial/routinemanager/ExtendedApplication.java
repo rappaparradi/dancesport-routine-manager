@@ -34,8 +34,8 @@ public class ExtendedApplication extends Application {
         wRoutine_rawsBufferArray = new ArrayList<RoutineRaw>();
         editTimingBuffer = "";
         isRoutineModified = false;
-        SharedPrefs prefvar = new SharedPrefs();
-        currentGender =  prefvar.getSex(this);
+//        SharedPrefs prefvar = new SharedPrefs();
+//        currentGender =  prefvar.getSex(this);
         
     }
  

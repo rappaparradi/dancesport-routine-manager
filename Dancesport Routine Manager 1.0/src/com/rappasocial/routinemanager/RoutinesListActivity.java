@@ -639,7 +639,7 @@ extApp.editTimingBuffer = source.editTimingBuffer;
 				}else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.VienneseWaltz) == 0) {
 					
 					llRoutineEditBG.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_purple));
-					llRoutineEditClickAble.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_clickable_blue));
+					llRoutineEditClickAble.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_clickable_purple));
 					
 					
 				}else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Foxtrot) == 0) {

@@ -192,6 +192,9 @@ public class TabHostRoutineEditActivity extends TabActivity {
 
 			}
 		});
+		SharedPrefs prefvar = new SharedPrefs();
+		getTabWidget().getChildAt(prefvar.getSex(this)).bringToFront();
+		
 	}
 
 	private void exit() {
@@ -202,7 +205,7 @@ public class TabHostRoutineEditActivity extends TabActivity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK
 				&& event.getRepeatCount() == 0) {
-
+ 
 			if (extApp.isRoutineModified == true) {
 
 				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
@@ -268,7 +271,8 @@ public class TabHostRoutineEditActivity extends TabActivity {
 			} else {
 				extApp.mRoutine_rawsBufferArray.clear();
 				extApp.wRoutine_rawsBufferArray.clear();
-				return super.onKeyDown(keyCode, event);
+				exit();
+//				return super.onKeyDown(keyCode, event);
 			}
 
 			return true;

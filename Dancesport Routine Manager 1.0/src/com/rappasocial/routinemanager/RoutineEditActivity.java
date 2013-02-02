@@ -563,7 +563,7 @@ public class RoutineEditActivity extends ListActivity implements
 				llRoutineEditBG.setBackgroundDrawable(getResources()
 						.getDrawable(R.drawable.listrow_bg_purple));
 				llRoutineEditClickAble.setBackgroundDrawable(getResources()
-						.getDrawable(R.drawable.listrow_bg_clickable_blue));
+						.getDrawable(R.drawable.listrow_bg_clickable_purple));
 
 			} else if ((curDance.name)
 					.compareToIgnoreCase(extApp.dbHelper.Foxtrot) == 0) {
@@ -877,10 +877,10 @@ public class RoutineEditActivity extends ListActivity implements
 
 	}
 
-	@Override
-	public void onBackPressed() {
-		this.getParent().onBackPressed();
-	}
+//	@Override
+//	public void onBackPressed() {
+//		this.getParent().onBackPressed();
+//	}
 
 	@Override
 	protected void onPause() {

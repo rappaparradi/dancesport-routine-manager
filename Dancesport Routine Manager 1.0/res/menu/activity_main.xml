@@ -4,12 +4,14 @@
         <item
             android:id="@+id/btAddRoutine"
             android:icon="@drawable/ic_menu_add"
-            android:title="New Routine">
+            android:title="New Routine"
+            android:visible="false">
         </item>
         <item
             android:id="@+id/btFigures"
             android:icon="@drawable/ic_menu_agenda"
-            android:title="Figures">
+            android:title="Figures"
+            android:visible="false">
         </item>
         <item
             android:id="@+id/settings_option_item"
@@ -20,12 +22,12 @@
     <group android:id="@+id/group1" >
         <item
             android:id="@+id/btExport"
-            android:icon="@drawable/ic_menu_agenda"
+            android:icon="@drawable/export_icon"
             android:title="Export">
         </item>
         <item
             android:id="@+id/btImport"
-            android:icon="@drawable/ic_menu_agenda"
+            android:icon="@drawable/import_icon"
             android:title="Import">
         </item>
     </group>
