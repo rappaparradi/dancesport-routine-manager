@@ -81,6 +81,8 @@
     <string name="sd_card_missing">SD-карта отсутствует</string>
     <string name="import_done_succesfully">База данных импортирована успешно&#8230;</string>
     <string name="export_done_succesfully">База данных выгружена в папку dancesport-routine-manager-share на SD-карте&#8230;</string>
+    <string name="tytle">Название</string>
+    <string name="description">Описание</string>
     
     <string-array name="figures_samba">
         <item>Основные движения с ПН</item>

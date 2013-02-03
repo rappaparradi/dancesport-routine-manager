@@ -184,7 +184,8 @@
     <string name="sd_card_missing">SD-card is missing</string>
     <string name="import_done_succesfully">Import Done Succesfully</string>
     <string name="export_done_succesfully">Database exported to folder dancesport-routine-manager-share on SD-card</string>
-    
+    <string name="tytle">Title</string>
+    <string name="description">Description</string>
     
     <string-array name="sex_items_titles">
         <item name="Man">Man</item>
