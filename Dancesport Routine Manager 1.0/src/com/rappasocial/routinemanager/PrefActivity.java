@@ -10,5 +10,7 @@ public class PrefActivity extends PreferenceActivity {
         getPreferenceManager().setSharedPreferencesName(
                 SharedPrefs.PREFS_NAME);
         addPreferencesFromResource(R.xml.prefs);
+        findViewById(android.R.id.list).setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_debut_dark));
+
     }
 }

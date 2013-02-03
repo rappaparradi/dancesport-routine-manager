@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:background="@drawable/custom_button_blue"
             android:text="&lt;"
             android:textSize="16dp"
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:background="@drawable/custom_button_blue"
             android:text="@string/btNewFigure" />
 
@@ -73,16 +73,35 @@
             android:layout_weight="0"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text=" x "/>
-        
+            android:text=" x " />
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/lvSelectFigures"
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1" >
- 
-    </ListView>
+        android:layout_height="fill_parent" >
+
+        <ListView
+            android:id="@+id/lvSelectFigures"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+        </ListView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_transp_title" >
+
+            <TextView
+                android:id="@+id/tvWindowTitle"
+                style="@style/TextRoutinesTRanspTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Window Title" />
+        </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

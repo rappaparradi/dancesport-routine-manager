@@ -217,7 +217,8 @@ public class RoutinesListActivity extends ListActivity implements
 
 		}
 		
-		
+		TextView tvWindowTitle = (TextView) findViewById(R.id.tvWindowTitle);
+		tvWindowTitle.setText(this.getString(R.string.win_title_routines));
 
 
 	        //show on btn1
@@ -689,7 +690,7 @@ extApp.editTimingBuffer = source.editTimingBuffer;
 				holder.quickActionPopup1.show(v);
 				break;
 			
-			case R.id.btShareui:
+//			case R.id.btShareui:
 //				try { // catches IOException below
 //					
 //					String subject = "Dancesport Routine Manager";
@@ -761,7 +762,7 @@ extApp.editTimingBuffer = source.editTimingBuffer;
 //	                    Uri.parse(routines.get((Integer) v
 //	    						.getTag()).yt_id)));
 //				break;
-				break;
+//				break;
 				
 			case R.id.btEditRoutine:
 				Animation animRotate = AnimationUtils.loadAnimation(ctx,

@@ -23,12 +23,12 @@
         <item
             android:id="@+id/btExport"
             android:icon="@drawable/export_icon"
-            android:title="Export">
+            android:title="@string/export">
         </item>
         <item
             android:id="@+id/btImport"
             android:icon="@drawable/import_icon"
-            android:title="Import">
+            android:title="@string/importstr">
         </item>
     </group>
 

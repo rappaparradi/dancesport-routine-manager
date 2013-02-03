@@ -108,10 +108,10 @@
                   android:windowSoftInputMode="stateHidden">
         </activity>
         <activity android:name=".PrefActivity"
-                  android:theme="@style/AppTheme"
                   android:configChanges="orientation">
         </activity>
         <activity android:name=".RoutineRawEditActivity"
+                  android:windowSoftInputMode="stateHidden"
                   android:configChanges="orientation">
         </activity> 
         <activity android:name=".TimingInputActivity"

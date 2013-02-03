@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -66,6 +67,20 @@ public class MainActivity extends Activity implements OnClickListener {
 		extApp = (ExtendedApplication) getApplicationContext();
 		dbHelper = extApp.dbHelper;
 		db = extApp.db;
+		try {
+			File directory = new File(Environment.getExternalStorageDirectory()
+					+ "/dancesport-routine-manager-share/");
+			// Create the folder if it doesn't exist:
+			if (!directory.exists()) {
+				directory.mkdirs();
+			}
+	
+		} catch (Exception e) {
+			
+
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	// protected static boolean exportDb(){
@@ -120,6 +135,14 @@ public class MainActivity extends Activity implements OnClickListener {
 			startActivity(intent);
 			break;
 		case R.id.btExport:
+
+			if (!hasStorage(true)) {
+
+				Toast.makeText(MainActivity.this, this.getString(R.string.sd_card_missing),
+						Toast.LENGTH_LONG).show();
+				return false;
+			}
+
 			InputStream myInput;
 
 			try {
@@ -134,7 +157,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				// Set the output folder on the SDcard
 				File directory = new File(
 						Environment.getExternalStorageDirectory()
-								+ "/some_folder/");
+								+ "/dancesport-routine-manager-share/");
 				// Create the folder if it doesn't exist:
 				if (!directory.exists()) {
 					directory.mkdirs();
@@ -173,144 +196,198 @@ public class MainActivity extends Activity implements OnClickListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			Toast.makeText(MainActivity.this, "Backup Done Succesfully!",
+			Toast.makeText(MainActivity.this, this.getString(R.string.export_done_succesfully),
 					Toast.LENGTH_LONG).show();
 			break;
 		case R.id.btImport:
-			
 
-			try {
+			if (!hasStorage(true)) {
 
+				Toast.makeText(MainActivity.this, this.getString(R.string.sd_card_missing),
+						Toast.LENGTH_LONG).show();
+				return false;
+			}
 
-				// Set the folder on the SDcard
-				File directory = new File(
-						Environment.getExternalStorageDirectory()
-								+ "/some_folder/");
-				// Set the input file stream up:
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+					MainActivity.this);
 
-				FilenameFilter textFilter = new FilenameFilter() {
-					public boolean accept(File dir, String name) {
+			// set title
+			alertDialogBuilder.setTitle(R.string.importstr);
 
-						if (name.startsWith("routineManagerDB_v"
-								+ String.valueOf(extApp.dbHelper.DB_VERSION))) {
-							return true;
-						} else {
-							return false;
-						}
-					}
-				};
+			// set dialog message
+			alertDialogBuilder
+					.setMessage(R.string.import_quest)
+					.setCancelable(true)
+					.setPositiveButton(R.string.Yes,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									try {
 
-				File[] files = directory.listFiles(textFilter);
-				boolean bingo = false;
+										// Set the folder on the SDcard
+										File directory = new File(
+												Environment
+														.getExternalStorageDirectory()
+														+ "/dancesport-routine-manager-share/");
+										// Set the input file stream up:
 
-				if (files != null) {
-					if (files.length > 1) {
+										FilenameFilter textFilter = new FilenameFilter() {
+											public boolean accept(File dir,
+													String name) {
 
-						AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-								MainActivity.this);
+												if (name.startsWith("routineManagerDB_v"
+														+ String.valueOf(extApp.dbHelper.DB_VERSION))) {
+													return true;
+												} else {
+													return false;
+												}
+											}
+										};
 
-						// set title
-						alertDialogBuilder.setTitle(R.string.importstr);
+										File[] files = directory
+												.listFiles(textFilter);
+										boolean bingo = false;
 
-						// set dialog message
-						alertDialogBuilder.setMessage(
-								R.string.import_dbforimport_toomanyfiles)
-								.setPositiveButton(R.string.Yes,
-										new DialogInterface.OnClickListener() {
-											public void onClick(
-													DialogInterface dialog,
-													int id) {
+										if (files != null) {
+											if (files.length > 1) {
+
+												AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+														MainActivity.this);
+
+												// set title
+												alertDialogBuilder
+														.setTitle(R.string.importstr);
+
+												// set dialog message
+												alertDialogBuilder
+														.setMessage(
+																R.string.import_dbforimport_toomanyfiles)
+														.setPositiveButton(
+																R.string.Yes,
+																new DialogInterface.OnClickListener() {
+																	public void onClick(
+																			DialogInterface dialog,
+																			int id) {
+
+																	}
+																});
+
+												// create alert dialog
+												AlertDialog alertDialog = alertDialogBuilder
+														.create();
+
+												// show it
+												alertDialog.show();
+
+												// return false;
 
 											}
-										});
+											;
+											for (File file : files) {
+												if (file.isDirectory()) {
 
-						// create alert dialog
-						AlertDialog alertDialog = alertDialogBuilder.create();
+												} else {
 
-						// show it
-						alertDialog.show();
+													bingo = true;
+												}
 
-						return false;
+											}
+										}
+										if (bingo == false) {
 
-					}
-					;
-					for (File file : files) {
-						if (file.isDirectory()) {
+											AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+													MainActivity.this);
 
-						} else {
+											// set title
+											alertDialogBuilder
+													.setTitle(R.string.importstr);
 
-							bingo = true;
-						}
+											// set dialog message
+											alertDialogBuilder
+													.setMessage(
+															R.string.import_dbforimport_notfound)
+													.setPositiveButton(
+															R.string.Yes,
+															new DialogInterface.OnClickListener() {
+																public void onClick(
+																		DialogInterface dialog,
+																		int id) {
 
-					}
-				}
-				if (bingo == false) {
+																}
+															});
 
-					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-							MainActivity.this);
+											// create alert dialog
+											AlertDialog alertDialog = alertDialogBuilder
+													.create();
 
-					// set title
-					alertDialogBuilder.setTitle(R.string.importstr);
+											// show it
+											alertDialog.show();
 
-					// set dialog message
-					alertDialogBuilder.setMessage(
-							R.string.import_dbforimport_notfound)
-							.setPositiveButton(R.string.Yes,
-									new DialogInterface.OnClickListener() {
-										public void onClick(
-												DialogInterface dialog, int id) {
+											// return false;
 
 										}
-									});
+										;
 
-					// create alert dialog
-					AlertDialog alertDialog = alertDialogBuilder.create();
+										OutputStream myOutput;
+										myOutput = new FileOutputStream(
+												"/data/data/com.rappasocial.routinemanager/databases/routineManagerDB");
 
-					// show it
-					alertDialog.show();
+										InputStream myInputs = new FileInputStream(
+												directory.getPath()
+														+ "/routineManagerDB_v"
+														+ String.valueOf(extApp.dbHelper.DB_VERSION)
+														+ ".backup");
 
-					return false;
+										// Transfer bytes from the input file to
+										// the output file
+										byte[] buffer = new byte[1024];
+										int length;
+										while ((length = myInputs.read(buffer)) > 0) {
+											myOutput.write(buffer, 0, length);
+										}
 
-				};
-  
-				OutputStream myOutput;
-				myOutput = new FileOutputStream(
-						"/data/data/com.rappasocial.routinemanager/databases/routineManagerDB");
+										// Close and clear the streams
+										myOutput.flush();
 
-				InputStream myInputs = new FileInputStream(directory.getPath()
-						+ "/routineManagerDB_v"
-						+ String.valueOf(extApp.dbHelper.DB_VERSION)
-						+ ".backup");
+										myOutput.close();
 
-				// Transfer bytes from the input file to the output file
-				byte[] buffer = new byte[1024];
-				int length;
-				while ((length = myInputs.read(buffer)) > 0) {
-					myOutput.write(buffer, 0, length);
-				}
+										myInputs.close();
 
-				// Close and clear the streams
-				myOutput.flush();
+									} catch (FileNotFoundException e) {
+										Toast.makeText(MainActivity.this,
+												"Import Unsuccesfull!",
+												Toast.LENGTH_LONG).show();
 
-				myOutput.close();
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (IOException e) {
+										Toast.makeText(MainActivity.this,
+												"Import Unsuccesfull!",
+												Toast.LENGTH_LONG).show();
 
-				myInputs.close();
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									Toast.makeText(MainActivity.this,
+											MainActivity.this.getString(R.string.import_done_succesfully),
+											Toast.LENGTH_LONG).show();
 
-			} catch (FileNotFoundException e) {
-				Toast.makeText(MainActivity.this, "Import Unsuccesfull!",
-						Toast.LENGTH_LONG).show();
+								}
+							})
+					.setNegativeButton(R.string.No,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
 
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				Toast.makeText(MainActivity.this, "Import Unsuccesfull!",
-						Toast.LENGTH_LONG).show();
+								}
+							});
 
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			Toast.makeText(MainActivity.this, "Import Done Succesfully!",
-					Toast.LENGTH_LONG).show();
+			// create alert dialog
+			AlertDialog alertDialog = alertDialogBuilder.create();
+
+			// show it
+			alertDialog.show();
+
 			break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -400,6 +477,18 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		}
 
+	}
+
+	public static boolean hasStorage(boolean requireWriteAccess) {
+		String state = Environment.getExternalStorageState();
+
+		if (Environment.MEDIA_MOUNTED.equals(state)) {
+			return true;
+		} else if (!requireWriteAccess
+				&& Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+			return true;
+		}
+		return false;
 	}
 
 }

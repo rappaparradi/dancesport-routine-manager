@@ -682,6 +682,14 @@ public class RoutineEditActivity extends ListActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch (item.getItemId()) {
+		
+		case R.id.btFigures:
+
+			Intent intent = new Intent(RoutineEditActivity.this,
+					CrudFiguresActivity.class);
+			startActivity(intent);
+			break;
+			
 		case R.id.btShare:
 			try { // catches IOException below
 

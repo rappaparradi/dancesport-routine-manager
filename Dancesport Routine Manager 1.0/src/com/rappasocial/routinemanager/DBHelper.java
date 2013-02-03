@@ -37,6 +37,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_ROUTINES_ID = "_id";
 	public static final String COLUMN_ROUTINES_ID_GLOBAL = "_id_global";
 	public static final String COLUMN_ROUTINES_NAME = "name";
+	public static final String COLUMN_ROUTINES_WEIGHT = "weihgt";
 	public static final String COLUMN_ROUTINES_DANCE_ID = "dance_id";
 	public static final String COLUMN_ROUTINES_YT_ID = "yt_id";
 	public static final String COLUMN_ROUTINES_CREATED_ON = "created_on";
@@ -93,6 +94,7 @@ public class DBHelper extends SQLiteOpenHelper {
 				+ COLUMN_ROUTINES_ID + " integer primary key autoincrement,"
 				+ COLUMN_ROUTINES_NAME + " text," + COLUMN_ROUTINES_DANCE_ID
 				+ " integer, " + COLUMN_ROUTINES_YT_ID + " text,"
+				+ COLUMN_ROUTINES_WEIGHT + "  integer, "
 				+ COLUMN_ROUTINES_DEL_MARK + " boolean,"
 				+ COLUMN_ROUTINES_CREATED_ON + " long, "
 				+ COLUMN_ROUTINES_MODIFIED_ON + " long, " + "FOREIGN KEY("

@@ -193,7 +193,13 @@ public class TabHostRoutineEditActivity extends TabActivity {
 			}
 		});
 		SharedPrefs prefvar = new SharedPrefs();
-		getTabWidget().getChildAt(prefvar.getSex(this)).bringToFront();
+		if (Integer.parseInt(prefvar.getSex(this)) == 0) {
+			
+			
+			getTabHost().setCurrentTab(1);
+			
+			
+		}
 		
 	}
 

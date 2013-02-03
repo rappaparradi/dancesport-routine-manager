@@ -51,7 +51,7 @@
     <string name="login_activity_loginfail_text_pwonly">Не верный пароль</string>
     <string name="login_activity_newaccount_text">Авторизуйтесь</string>
     <string name="login_activity_loginfail_text_pwmissing">Введите пароль</string>
-    <string name="pref_key_flag_sex">Пол</string>
+    <string name="pref_key_flag_sex">Sex</string>
     <string name="importstr">Импорт</string>
     <string name="export">Экспорт</string>
     <string name="import_dbforimport_notfound">На SD карте в папке dancesport-routine-manager не найдено ни одного файла базы данных с актуальной версией для импорта&#8230;</string>
@@ -76,7 +76,13 @@
     <string name="enter_the_name">Введите название&#8230;</string>
     <string name="copy_manspart_quest">Партия партнерши пуста. Скопировать партию партнера?</string>
     <string name="copy_ladyspart_quest">Партия партнера пуста. Скопировать партию партнерши?</string>
-
+    <string name="win_title_figures">Фигуры</string>
+    <string name="win_title_routines">Вариации</string>
+    <string name="import_quest">Файл базы данных будет полностью замещен файлом из папки dancesport-routine-manager-share на SD-карте. Продолжить?</string>
+    <string name="sd_card_missing">SD-карта отсутствует</string>
+    <string name="import_done_succesfully">База данных импортирована успешно&#8230;</string>
+    <string name="export_done_succesfully">База данных выгружена в папку dancesport-routine-manager-share на SD-карте&#8230;</string>
+    
     <string-array name="figures_samba">
         <item>Основные движения с ПН</item>
         <item>Основные движения с ЛН</item>

@@ -212,6 +212,9 @@ public class CrudFiguresActivity extends Activity implements OnClickListener,
 			tvCurDanceChar.setText("Q");
 
 		}
+		
+		TextView tvWindowTitle = (TextView) findViewById(R.id.tvWindowTitle);
+		tvWindowTitle.setText(this.getString(R.string.win_title_figures));
 		// chbFigureSelect
 		// // получаем массив из файла ресурсов
 		// names = getResources().getStringArray(R.array.names);

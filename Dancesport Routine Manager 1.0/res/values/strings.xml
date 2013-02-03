@@ -170,7 +170,6 @@
     <string name="edit_tytle">Edite Title</string>
     <string name="edit_routine">Edite Routine</string>
     <string name="importstr">Import</string>
-    <string name="export">Export</string>
     <string name="import_dbforimport_notfound">On SD-card folder dancesport-routine-manager didn\'t find any database file with actual version for import&#8230;</string>
     <string name="import_dbforimport_toomanyfiles">On SD-card folder dancesport-routine-manager leave a single database file for import&#8230;</string>
     <string name="copy_manspart_quest">The Lady\'s part is empty. Would you like to copy the Man\'s?</string>
@@ -178,6 +177,14 @@
     <string name="thefigure_is_used">Unable to delete. The figure is used in your routines&#8230;</string>
     <string name="figure_added">Figure added&#8230;</string>
     <string name="enter_the_name">Enter the name, please&#8230;</string>
+    <string name="win_title_figures">Figures</string>
+    <string name="win_title_routines">Routines</string>
+    <string name="export">Export</string>
+    <string name="import_quest">Overwrite database from folder dancesport-routine-manager-share on SD-card?</string>
+    <string name="sd_card_missing">SD-card is missing</string>
+    <string name="import_done_succesfully">Import Done Succesfully</string>
+    <string name="export_done_succesfully">Database exported to folder dancesport-routine-manager-share on SD-card</string>
+    
     
     <string-array name="sex_items_titles">
         <item name="Man">Man</item>
