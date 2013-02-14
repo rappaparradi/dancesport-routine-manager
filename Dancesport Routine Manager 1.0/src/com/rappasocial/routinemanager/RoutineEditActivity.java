@@ -49,7 +49,7 @@ public class RoutineEditActivity extends ListActivity implements
 	ArrayList<RoutineRaw> routine_raws;
 	BoxAdapterRoutineRaw boxAdapter;
 	ExtendedApplication extApp;
-	TextView tvCurDanceCharRE, tvRoutineTitle;
+	TextView tvCurDanceCharRE, tvRoutineTitle, btFiguresActivity;
 	Button btAddFigures, btRLback;
 	DragSortListView lvRoutineRaws;
 	LinearLayout llRoutineEditActionPanel;
@@ -116,6 +116,10 @@ public class RoutineEditActivity extends ListActivity implements
 		btAddFigures = (Button) findViewById(R.id.btAddFigures);
 
 		btAddFigures.setOnClickListener(this);
+
+		btFiguresActivity = (Button) findViewById(R.id.btFiguresActivity);
+
+		btFiguresActivity.setOnClickListener(this);
 
 		btRLback = (Button) findViewById(R.id.btRLback);
 
@@ -280,8 +284,8 @@ public class RoutineEditActivity extends ListActivity implements
 
 			for (int i = 0; i < extApp.wRoutine_rawsBufferArray.size(); i++) {
 
-				routine_raws.add(new RoutineRaw(extApp.wRoutine_rawsBufferArray.get(i)));
-				
+				routine_raws.add(new RoutineRaw(extApp.wRoutine_rawsBufferArray
+						.get(i)));
 
 			}
 
@@ -292,20 +296,20 @@ public class RoutineEditActivity extends ListActivity implements
 			}
 		} else {
 
-//			routine_raws
-//					.addAll((ArrayList<RoutineRaw>) extApp.mRoutine_rawsBufferArray
-//							.clone());
-//
-//			for (int i = 0; i < routine_raws.size(); i++) {
-//
-//				routine_raws.get(i).gender = this.gender;
-//
-//			}
-			
+			// routine_raws
+			// .addAll((ArrayList<RoutineRaw>) extApp.mRoutine_rawsBufferArray
+			// .clone());
+			//
+			// for (int i = 0; i < routine_raws.size(); i++) {
+			//
+			// routine_raws.get(i).gender = this.gender;
+			//
+			// }
+
 			for (int i = 0; i < extApp.mRoutine_rawsBufferArray.size(); i++) {
 
-				routine_raws.add(new RoutineRaw(extApp.mRoutine_rawsBufferArray.get(i)));
-				
+				routine_raws.add(new RoutineRaw(extApp.mRoutine_rawsBufferArray
+						.get(i)));
 
 			}
 
@@ -682,14 +686,14 @@ public class RoutineEditActivity extends ListActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch (item.getItemId()) {
-		
+
 		case R.id.btFigures:
 
 			Intent intent = new Intent(RoutineEditActivity.this,
 					CrudFiguresActivity.class);
 			startActivity(intent);
 			break;
-			
+
 		case R.id.btShare:
 			try { // catches IOException below
 
@@ -839,7 +843,14 @@ public class RoutineEditActivity extends ListActivity implements
 			// Intent intent = new Intent(this, SelectFiguresActivity.class);
 			// this.startActivity(intent);
 			break;
-
+			
+			
+           case R.id.btFiguresActivity:
+			
+        	   Intent intent = new Intent(RoutineEditActivity.this,
+   					CrudFiguresActivity.class);
+   			startActivity(intent);
+			break;
 		case R.id.btRLback:
 			
 			KeyEvent ke = new KeyEvent(0,0,KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_BACK,0,0);
@@ -885,10 +896,10 @@ public class RoutineEditActivity extends ListActivity implements
 
 	}
 
-//	@Override
-//	public void onBackPressed() {
-//		this.getParent().onBackPressed();
-//	}
+	// @Override
+	// public void onBackPressed() {
+	// this.getParent().onBackPressed();
+	// }
 
 	@Override
 	protected void onPause() {

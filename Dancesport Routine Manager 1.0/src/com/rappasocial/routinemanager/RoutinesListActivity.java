@@ -48,7 +48,7 @@ public class RoutinesListActivity extends ListActivity implements
 	BoxAdapterRoutine boxAdapter;
 	ExtendedApplication extApp;
 	TextView tvCurDanceChar, tvRoutineTitle;
-	Button btAddNewRoutune, btRLback;
+	Button btAddNewRoutune, btRLback, btFiguresActivity;
 	DragSortListView lvMain;
 	Button btEditRoutine, btYT_id, btShareui;
 	ImageButton btDeleteRoutine;
@@ -101,6 +101,10 @@ public class RoutinesListActivity extends ListActivity implements
 		btAddNewRoutune = (Button) findViewById(R.id.btAddNewRoutune);
 
 		btAddNewRoutune.setOnClickListener(this);
+		
+		btFiguresActivity = (Button) findViewById(R.id.btFiguresActivity);
+
+		btFiguresActivity.setOnClickListener(this);
 		
 		btRLback = (Button) findViewById(R.id.btRLback);
 
@@ -265,10 +269,10 @@ public class RoutinesListActivity extends ListActivity implements
 
 	/** Called when the activity is first created. */
 
-	// РіРµРЅРµСЂРёСЂСѓРµРј РґР°РЅРЅС‹Рµ РґР»СЏ Р°РґР°РїС‚РµСЂР°
+	// Р С–Р ВµР Р…Р ВµРЎР‚Р С‘РЎР‚РЎС“Р ВµР С� Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ Р Т‘Р В»РЎРЏ Р В°Р Т‘Р В°Р С—РЎвЂљР ВµРЎР‚Р В°
 	void fillData() {
 
-		// РїРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ query
+		// Р С—Р ВµРЎР‚Р ВµР С�Р ВµР Р…Р Р…РЎвЂ№Р Вµ Р Т‘Р В»РЎРЏ query
 		// String[] columns = null;
 		String selection = null;
 		// String[] selectionArgs = null;
@@ -276,7 +280,7 @@ public class RoutinesListActivity extends ListActivity implements
 		// String having = null;
 		String orderBy = extApp.dbHelper.COLUMN_ROUTINES_NAME;
 
-		// РєСѓСЂСЃРѕСЂ
+		// Р С”РЎС“РЎР‚РЎРѓР С•РЎР‚
 		Cursor c = null;
 		Dance curDance = extApp.getcurrentDance();
 		if (curDance != null) {
@@ -326,6 +330,13 @@ public class RoutinesListActivity extends ListActivity implements
 			Intent intent = new Intent(RoutinesListActivity.this,
 					AddRoutineActivity.class);
 			intent.putExtra("editmode", false);
+			startActivity(intent);
+			break;
+			
+		case R.id.btFiguresActivity:
+
+			intent = new Intent(RoutinesListActivity.this,
+					CrudFiguresActivity.class);
 			startActivity(intent);
 			break;
 			
@@ -697,10 +708,10 @@ extApp.editTimingBuffer = source.editTimingBuffer;
 //					String body = "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/><html><body><table align=\"center\" border=\"1\" bordercolor=\"#ccc\" cellpadding=\"5\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:10px 0 10px 15px;\">"
 //							+ "<thead>"
 //							+ "<tr>"
-//							+ "<th scope=\"col\">в„–</th>"
-//							+ "<th scope=\"col\">Р¤РёРіСѓСЂР°</th>"
-//							+ "<th scope=\"col\">РљРѕРјРјРµРЅС‚Р°СЂРёР№</th>"
-//							+ "<th scope=\"col\">РЎС‡РµС‚</th>"
+//							+ "<th scope=\"col\">РІвЂћвЂ“</th>"
+//							+ "<th scope=\"col\">Р В¤Р С‘Р С–РЎС“РЎР‚Р В°</th>"
+//							+ "<th scope=\"col\">Р С™Р С•Р С�Р С�Р ВµР Р…РЎвЂљР В°РЎР‚Р С‘Р в„–</th>"
+//							+ "<th scope=\"col\">Р РЋРЎвЂЎР ВµРЎвЂљ</th>"
 //							+ "</tr>"
 //							+ "</thead>"
 //							+ "<tbody>";
@@ -744,7 +755,7 @@ extApp.editTimingBuffer = source.editTimingBuffer;
 //					emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
 //							subject);
 //					emailIntent.putExtra(android.content.Intent.EXTRA_TEXT,
-//							"Р’Р°С€ РґРѕРєСѓРјРµРЅС‚ РІ С„РѕСЂРјР°С‚Рµ html РЅР°С…РѕРґРёС‚СЃСЏ РІРѕ РІР»РѕР¶РµРЅРёРё");
+//							"Р вЂ™Р В°РЎв‚¬ Р Т‘Р С•Р С”РЎС“Р С�Р ВµР Р…РЎвЂљ Р Р† РЎвЂћР С•РЎР‚Р С�Р В°РЎвЂљР Вµ html Р Р…Р В°РЎвЂ¦Р С•Р Т‘Р С‘РЎвЂљРЎРѓРЎРЏ Р Р†Р С• Р Р†Р В»Р С•Р В¶Р ВµР Р…Р С‘Р С‘");
 //					emailIntent.putExtra(Intent.EXTRA_STREAM,
 //							Uri.parse("file://" + strFile + "/dsrm_exported.html"));
 //					startActivity(Intent.createChooser(emailIntent, "Email:"));
