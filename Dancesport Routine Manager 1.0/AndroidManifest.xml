@@ -129,6 +129,9 @@
                   android:configChanges="orientation"
                   android:windowSoftInputMode="stateHidden">
         </activity>
+        <activity android:name=".VidsListActivity"
+                  android:configChanges="orientation">
+        </activity>
         
     </application>
 

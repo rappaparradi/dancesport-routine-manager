@@ -7,6 +7,19 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+
+
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerFragment;
+import com.google.android.youtube.player.YouTubePlayer.OnInitializedListener;
+import com.google.android.youtube.player.YouTubePlayer.Provider;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
+import com.google.android.youtube.player.YouTubePlayerView;
 import com.mobeta.android.dslv.DragSortListView;
 
 
@@ -21,6 +34,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings.Secure;
 import android.text.format.DateFormat;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -36,17 +50,19 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RoutinesListActivity extends ListActivity implements
+
+public class VidsListActivity extends FragmentActivity implements
 		OnClickListener {
 
-	ArrayList<Routine> routines;
-	BoxAdapterRoutine boxAdapter;
+	ArrayList<Video> vids;
+	BoxAdapterVideo boxAdapter;
 	ExtendedApplication extApp;
 	TextView tvCurDanceChar, tvRoutineTitle;
 	Button btAddNewRoutune, btRLback;
@@ -54,6 +70,8 @@ public class RoutinesListActivity extends ListActivity implements
 	Button btEditRoutine, btYT_id, btShareui;
 	ImageButton btDeleteRoutine;
 	LinearLayout llRoutinesListActionPanel;
+	
+    
 	
 	//action id
     private static final int ID_VLC    = 1;
@@ -65,7 +83,7 @@ public class RoutinesListActivity extends ListActivity implements
 
 	private DragSortListView.DropListener onDrop = new DragSortListView.DropListener() {
 		public void drop(int from, int to) {
-			Routine item = boxAdapter.getItem(from);
+			Video item = boxAdapter.getItem(from);
 
 			boxAdapter.remove(item);
 			boxAdapter.insert(item, to);
@@ -81,21 +99,43 @@ public class RoutinesListActivity extends ListActivity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.routines_list);
+		setContentView(R.layout.vids_list);
 
-		routines = new ArrayList<Routine>();
+		vids = new ArrayList<Video>();   
 		extApp = (ExtendedApplication) getApplicationContext();
 
 		fillData();
-		boxAdapter = new BoxAdapterRoutine(routines, RoutinesListActivity.this);
+		boxAdapter = new BoxAdapterVideo(vids, VidsListActivity.this);
 
-		lvMain = (DragSortListView) getListView();
+		lvMain = (DragSortListView) findViewById(android.R.id.list);
 
 		lvMain.setDropListener(onDrop);
 		lvMain.setRemoveListener(onRemove);
 
-		setListAdapter(boxAdapter);
+		lvMain.setAdapter(boxAdapter);
 		
+		YouTubePlayerSupportFragment youTubePlayerFragment =
+		        (YouTubePlayerSupportFragment) getSupportFragmentManager().findFragmentById(R.id.youtube_fragment);
+		    youTubePlayerFragment.initialize(DeveloperKey.DEVELOPER_KEY, new YouTubePlayer.OnInitializedListener() {
+				
+				public void onInitializationSuccess(Provider arg0, YouTubePlayer player,
+						boolean wasRestored) {
+					if (!wasRestored) {
+						player.cueVideo("nCgQDjiotG0");
+					    }
+					
+				}
+				
+				public void onInitializationFailure(Provider arg0,
+						YouTubeInitializationResult arg1) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+		
+	    
+ 
+      
 		
 		
 		
@@ -113,7 +153,7 @@ public class RoutinesListActivity extends ListActivity implements
 
 		TextView tvCurDanceChar = (TextView) findViewById(R.id.tvCurDanceChar);
 
-		if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Samba) == 0) {
+		if ((curDance.name).compareToIgnoreCase(DBHelper.Samba) == 0) {
 
 			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_orange));
@@ -123,7 +163,7 @@ public class RoutinesListActivity extends ListActivity implements
 					.getDrawable(R.drawable.custom_button_orange));
 			tvCurDanceChar.setText("S");
 
-		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.ChaCha) == 0) {
+		} else if ((curDance.name).compareToIgnoreCase(DBHelper.ChaCha) == 0) {
 
 			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_blue));
@@ -133,7 +173,7 @@ public class RoutinesListActivity extends ListActivity implements
 					.getDrawable(R.drawable.custom_button_blue));
 			tvCurDanceChar.setText("Ch");
 
-		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Rumba) == 0) {
+		} else if ((curDance.name).compareToIgnoreCase(DBHelper.Rumba) == 0) {
 
 			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_purple));
@@ -144,7 +184,7 @@ public class RoutinesListActivity extends ListActivity implements
 			tvCurDanceChar.setText("R");
 
 		} else if ((curDance.name)
-				.compareToIgnoreCase(extApp.dbHelper.PasoDoble) == 0) {
+				.compareToIgnoreCase(DBHelper.PasoDoble) == 0) {
 
 			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_red));
@@ -154,7 +194,7 @@ public class RoutinesListActivity extends ListActivity implements
 					.getDrawable(R.drawable.custom_button_red));
 			tvCurDanceChar.setText("P");
 
-		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Jive) == 0) {
+		} else if ((curDance.name).compareToIgnoreCase(DBHelper.Jive) == 0) {
 
 			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_yellow));
@@ -164,7 +204,7 @@ public class RoutinesListActivity extends ListActivity implements
 					.getDrawable(R.drawable.custom_button_yellow));
 			tvCurDanceChar.setText("J");
 
-		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Waltz) == 0) {
+		} else if ((curDance.name).compareToIgnoreCase(DBHelper.Waltz) == 0) {
 
 			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_orange));
@@ -174,7 +214,7 @@ public class RoutinesListActivity extends ListActivity implements
 					.getDrawable(R.drawable.custom_button_orange));
 			tvCurDanceChar.setText("W");
 
-		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Tango) == 0) {
+		} else if ((curDance.name).compareToIgnoreCase(DBHelper.Tango) == 0) {
 
 			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_red));
@@ -185,7 +225,7 @@ public class RoutinesListActivity extends ListActivity implements
 			tvCurDanceChar.setText("T");
 
 		} else if ((curDance.name)
-				.compareToIgnoreCase(extApp.dbHelper.VienneseWaltz) == 0) {
+				.compareToIgnoreCase(DBHelper.VienneseWaltz) == 0) {
 
 			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_purple));
@@ -195,7 +235,7 @@ public class RoutinesListActivity extends ListActivity implements
 					.getDrawable(R.drawable.custom_button_purple));
 			tvCurDanceChar.setText("V");
 
-		} else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Foxtrot) == 0) {
+		} else if ((curDance.name).compareToIgnoreCase(DBHelper.Foxtrot) == 0) {
 
 			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_blue));
@@ -206,7 +246,7 @@ public class RoutinesListActivity extends ListActivity implements
 			tvCurDanceChar.setText("F");
 
 		} else if ((curDance.name)
-				.compareToIgnoreCase(extApp.dbHelper.Quickstep) == 0) {
+				.compareToIgnoreCase(DBHelper.Quickstep) == 0) {
 
 			llRoutinesListActionPanel.setBackgroundDrawable(getResources()
 					.getDrawable(R.drawable.action_panel_bg_yellow));
@@ -236,7 +276,7 @@ public class RoutinesListActivity extends ListActivity implements
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		routines.clear();
+		vids.clear();
 		fillData();
 		boxAdapter.notifyDataSetChanged();
 
@@ -254,12 +294,8 @@ public class RoutinesListActivity extends ListActivity implements
 		switch (item.getItemId()) {
 		case R.id.btFigures:
 
-//			Intent intent = new Intent(RoutinesListActivity.this,
-//					CrudFiguresActivity.class);
-//			startActivity(intent);
-
-			Intent intent = new Intent(RoutinesListActivity.this,
-					VidsListActivity.class);
+			Intent intent = new Intent(VidsListActivity.this,
+					CrudFiguresActivity.class);
 			startActivity(intent);
 			break;
 
@@ -279,22 +315,22 @@ public class RoutinesListActivity extends ListActivity implements
 		// String[] selectionArgs = null;
 		// String groupBy = null;
 		// String having = null;
-		String orderBy = extApp.dbHelper.COLUMN_ROUTINES_NAME;
+		String orderBy = DBHelper.COLUMN_VIDS_TITLE;
 
 		// РєСѓСЂСЃРѕСЂ
 		Cursor c = null;
-		Dance curDance = extApp.getcurrentDance();
-		if (curDance != null) {
+//		Dance curDance = extApp.getcurrentDance();
+//		if (curDance != null) {
+//
+//			selection = extApp.dbHelper.COLUMN_ROUTINES_DANCE_ID + " = "
+//					+ curDance.id;
+//
+//		} else {
+//
+//			selection = null;
+//		}
 
-			selection = extApp.dbHelper.COLUMN_ROUTINES_DANCE_ID + " = "
-					+ curDance.id;
-
-		} else {
-
-			selection = null;
-		}
-
-		c = extApp.db.query(extApp.dbHelper.DB_TABLE_ROUTINES, null, selection,
+		c = extApp.db.query(DBHelper.DB_TABLE_VIDS, null, selection,
 				null, null, null, orderBy);
 
 		if (c != null) {
@@ -302,17 +338,15 @@ public class RoutinesListActivity extends ListActivity implements
 
 				do {
 
-					routines.add(new Routine(
+					vids.add(new Video(
 							c.getInt(c
-									.getColumnIndex(extApp.dbHelper.COLUMN_ROUTINES_ID)),
+									.getColumnIndex(DBHelper.COLUMN_VIDS_ID)),
 							c.getString(c
-									.getColumnIndex(extApp.dbHelper.COLUMN_ROUTINES_NAME)),
+									.getColumnIndex(DBHelper.COLUMN_VIDS_YT_ID)),
 							c.getString(c
-									.getColumnIndex(extApp.dbHelper.COLUMN_ROUTINES_YT_ID)),
-							c.getLong(c
-									.getColumnIndex(extApp.dbHelper.COLUMN_ROUTINES_CREATED_ON)),
-							c.getLong(c
-									.getColumnIndex(extApp.dbHelper.COLUMN_ROUTINES_MODIFIED_ON))));
+									.getColumnIndex(DBHelper.COLUMN_VIDS_TITLE)),
+							c.getString(c
+									.getColumnIndex(DBHelper.COLUMN_VIDS_DESCRIPTION))));
 
 				} while (c.moveToNext());
 			}
@@ -328,7 +362,7 @@ public class RoutinesListActivity extends ListActivity implements
 		switch (v.getId()) {
 		case R.id.btAddNewRoutune:
 
-			Intent intent = new Intent(RoutinesListActivity.this,
+			Intent intent = new Intent(VidsListActivity.this,
 					AddRoutineActivity.class);
 			intent.putExtra("editmode", false);
 			startActivity(intent);
@@ -344,27 +378,26 @@ public class RoutinesListActivity extends ListActivity implements
 	}
 
 	private class ViewHolder {
-		public TextView albumsView;
-		public TextView tvCreatedOn;
-		public TextView tvModifiedOn;
+		public YouTubePlayerView youtube_view;
+		public TextView tvVidTitle;
+		public TextView tvViddescription;
 		public int position;
-		public QuickActionPopup quickActionPopup1;
-		public QuickActionPopup quickActionPopupEditRoutine;
+		
 		
 	}
 
-	public class BoxAdapterRoutine extends ArrayAdapter<Routine> implements
-			OnClickListener, OnItemClickListener {
+	public class BoxAdapterVideo extends ArrayAdapter<Video> implements
+			OnClickListener {
 		Context ctx;
 		LayoutInflater lInflater;
-		ArrayList<Routine> objects;
+		ArrayList<Video> objects;
 		ExtendedApplication extApp;
 		LinearLayout llRoutineEditBG, llRoutineEditClickAble;
 		
 
-		public BoxAdapterRoutine(List<Routine> objects, Context ctx) {
-			super(RoutinesListActivity.this, R.layout.routine_list_item,
-					R.id.tvRoutineName, objects);
+		public BoxAdapterVideo(List<Video> objects, Context ctx) {
+			super(VidsListActivity.this, R.layout.vids_list_item,
+					R.id.tvVidTitle, objects);
 			extApp = (ExtendedApplication) ctx.getApplicationContext();
 			this.ctx = ctx;
 		}
@@ -391,6 +424,7 @@ public class RoutinesListActivity extends ListActivity implements
 		// return position;
 		// }
 
+		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 
 			// View view = convertView;
@@ -413,184 +447,74 @@ public class RoutinesListActivity extends ListActivity implements
 			// // btEditRoutine.setOnClickListener(this);
 			//
 			// return view;
-
+			
 			View v = super.getView(position, convertView, parent);
 
 			if (v != convertView && v != null) {
 				ViewHolder holder = new ViewHolder();
 
-				TextView tv = (TextView) v.findViewById(R.id.tvRoutineName);
-				TextView tvCreatedOn = (TextView) v.findViewById(R.id.tvCreatedOn);
-				TextView tvModifiedOn = (TextView) v.findViewById(R.id.tvModifiedOn);
 				
-				holder.albumsView = tv;
-	
-				holder.tvCreatedOn = tvCreatedOn;
-				holder.tvModifiedOn = tvModifiedOn;
+				TextView tvVidTitle = (TextView) v.findViewById(R.id.tvVidTitle);
+				TextView tvViddescription = (TextView) v.findViewById(R.id.tvViddescription);
+				
+			
 
 				v.setTag(holder);
 			}
 
-			Button btEditRoutine = (Button) v.findViewById(R.id.btEditRoutine);
-			btEditRoutine.setTag(v.getTag());
-			btEditRoutine.setOnClickListener(this);
-
-			// LinearLayout llClickableRoutineItem = (LinearLayout)
-			// v.findViewById(R.id.llClickableRoutineItem);;
-			// llClickableRoutineItem.setTag(position);
-
-			btDeleteRoutine = (ImageButton) v
-					.findViewById(R.id.btDeleteRoutine);
-			btDeleteRoutine.setTag(v.getTag());
-			btDeleteRoutine.setOnClickListener(this);
+//			Button btEditRoutine = (Button) v.findViewById(R.id.btEditRoutine);
+//			btEditRoutine.setTag(v.getTag());
+//			btEditRoutine.setOnClickListener(this);
+//
+//			// LinearLayout llClickableRoutineItem = (LinearLayout)
+//			// v.findViewById(R.id.llClickableRoutineItem);;
+//			// llClickableRoutineItem.setTag(position);
+//
+//			btDeleteRoutine = (ImageButton) v
+//					.findViewById(R.id.btDeleteRoutine);
+//			btDeleteRoutine.setTag(v.getTag());
+//			btDeleteRoutine.setOnClickListener(this);
 			
 			
 //			btShareui = (Button) v
 //					.findViewById(R.id.btShareui);
 //			btShareui.setTag(v.getTag());
 //			btShareui.setOnClickListener(this);
+		
+			
+
 			
 			
 			ViewHolder holder = (ViewHolder) v.getTag();
-			if (getItem(position).yt_id != null && getItem(position).yt_id.trim().length() != 0) {
-				
-				QuickActionItem mailItem    = new QuickActionItem(ID_MAIL, getString(R.string.play), getResources().getDrawable(R.drawable.play_icon));
-		        QuickActionItem vlcItem     = new QuickActionItem(ID_VLC, getString(R.string.change_link), getResources().getDrawable(R.drawable.link_icon));
-//		        QuickActionItem safariItem  = new QuickActionItem(ID_SAFARI, "Safari", getResources().getDrawable(R.drawable.edit_icon));
-		//create QuickActionPopup. Use QuickActionPopup.VERTICAL or QuickActionPopup.HORIZONTAL //param to define orientation
-		        holder.quickActionPopup1 = new QuickActionPopup(ctx, QuickActionPopup.VERTICAL, getItem(position).yt_id, routines.get(position).id);
+//			
 
-		        //add action items into QuickActionPopup
-		        holder.quickActionPopup1.addActionItem(mailItem);
-		        holder.quickActionPopup1.addActionItem(vlcItem);
-//		            quickActionPopup1.addActionItem(safariItem);
-
-		        //Set listener for action item clicked
-		        holder.quickActionPopup1.setOnActionItemClickListener(new QuickActionPopup.OnActionItemClickListener() {           
-		            public void onItemClick(QuickActionPopup source, int pos, int actionId) {               
-
-		                //filtering items by id
-		                if (actionId == ID_MAIL) {
-		                	 Uri uri = Uri.parse(source.editTimingBuffer);
-		                	 uri = Uri.parse("vnd.youtube:"  + uri.getQueryParameter("v"));
-		                	startActivity(new Intent(Intent.ACTION_VIEW, 
-		                			uri));
-		                } else if (actionId == ID_VLC) {
-		                	extApp.editTimingBuffer = source.editTimingBuffer;
-		    				
-		    				Intent intent = new Intent(RoutinesListActivity.this,
-		    						YTLinkEditActivity.class);
-		    				
-		    				intent.putExtra("cur_routine_id", source.currentRoutineid);
-		    				
-		    				ctx.startActivity(intent);
-		                }
-		            }
-		        });
-			}
-			else {
-				
-				QuickActionItem mailItem    = new QuickActionItem(ID_MAIL, getString(R.string.linktoth_yt_vid), getResources().getDrawable(R.drawable.link_icon));
-//		        QuickActionItem vlcItem     = new QuickActionItem(ID_VLC, "VLC", getResources().getDrawable(R.drawable.edit_icon));
-//		        QuickActionItem safariItem  = new QuickActionItem(ID_SAFARI, "Safari", getResources().getDrawable(R.drawable.edit_icon));
-		//create QuickActionPopup. Use QuickActionPopup.VERTICAL or QuickActionPopup.HORIZONTAL //param to define orientation
-				holder.quickActionPopup1 = new QuickActionPopup(ctx, QuickActionPopup.VERTICAL, "", routines.get(position).id);
-
-		        //add action items into QuickActionPopup
-				holder.quickActionPopup1.addActionItem(mailItem);
-//		        quickActionPopup1.addActionItem(vlcItem);
-//		            quickActionPopup1.addActionItem(safariItem);
-
-		        //Set listener for action item clicked
-				holder.quickActionPopup1.setOnActionItemClickListener(new QuickActionPopup.OnActionItemClickListener() {           
-		            public void onItemClick(QuickActionPopup source, int pos, int actionId) {               
-
-		                //filtering items by id
-		                if (actionId == ID_MAIL) {
-extApp.editTimingBuffer = source.editTimingBuffer;
-		    				
-		    				Intent intent = new Intent(RoutinesListActivity.this,
-		    						YTLinkEditActivity.class);
-		    				
-		    				intent.putExtra("cur_routine_id", source.currentRoutineid);
-		    				
-		    				ctx.startActivity(intent);
-		                } 
-		            }
-		        });
-			}
-			
-			
-			QuickActionItem mailItem    = new QuickActionItem(ID_EDIT_TITLE, getString(R.string.edit_tytle), null);
-	        QuickActionItem vlcItem     = new QuickActionItem(ID_EDIT_ROUTINE, getString(R.string.edit_routine), null);
-//	        QuickActionItem safariItem  = new QuickActionItem(ID_SAFARI, "Safari", getResources().getDrawable(R.drawable.edit_icon));
-	//create QuickActionPopup. Use QuickActionPopup.VERTICAL or QuickActionPopup.HORIZONTAL //param to define orientation
-	        holder.quickActionPopupEditRoutine = new QuickActionPopup(ctx, QuickActionPopup.VERTICAL, routines.get(position).name, routines.get(position).id);
-
-	        //add action items into QuickActionPopup
-	        holder.quickActionPopupEditRoutine.addActionItem(mailItem);
-	        holder.quickActionPopupEditRoutine.addActionItem(vlcItem);
-//	            quickActionPopup1.addActionItem(safariItem);
-
-	        //Set listener for action item clicked
-	        holder.quickActionPopupEditRoutine.setOnActionItemClickListener(new QuickActionPopup.OnActionItemClickListener() {           
-	            public void onItemClick(QuickActionPopup source, int pos, int actionId) {               
-
-	                //filtering items by id
-	                if (actionId == ID_EDIT_TITLE) {
-	                	
-	                	
-	    				
-	    				Intent intent = new Intent(RoutinesListActivity.this,
-	    						AddRoutineActivity.class);
-	    				intent.putExtra("editmode", true);
-	    				
-	    				intent.putExtra("routines_name_buff", source.editTimingBuffer);
-	    				intent.putExtra("cur_routine_id", source.currentRoutineid);
-	    				
-	    				ctx.startActivity(intent);
-//	                	 Uri uri = Uri.parse(source.editTimingBuffer);
-//	                	 uri = Uri.parse("vnd.youtube:"  + uri.getQueryParameter("v"));
-//	                	startActivity(new Intent(Intent.ACTION_VIEW, 
-//	                			uri));
-	                } else if (actionId == ID_EDIT_ROUTINE) {
-
-	    				extApp.currentRoutineid = source.currentRoutineid;
-	    				Intent intent = new Intent(ctx, TabHostRoutineEditActivity.class);
-	    				intent.putExtra("cur_routine_id", source.currentRoutineid);
-	    				ctx.startActivity(intent);
-	    				
-	                }
-	            }
-	        });
-			
 			
 
-	      
-			
-			btYT_id = (Button) v
-					.findViewById(R.id.btYT_id);
-			btYT_id.setTag(v.getTag());
-			btYT_id.setOnClickListener(this);
-			
-			String albums = getItem(position).name;
-			String tvYT_id = getItem(position).yt_id;
-			long CreatedOn = getItem(position).created_on;
-			long ModifiedOn = getItem(position).modified_on;
 			
 			
-			java.sql.Date dtCreatedOn = new java.sql.Date(CreatedOn);
-			java.sql.Date dtModifiedOn = new java.sql.Date(ModifiedOn);
-			
-			
-			String fdtCreatedOn = (String) android.text.format.DateFormat.format("dd/MM/yyyy kk:mm:ss", dtCreatedOn);
-			String fdtModifiedOn = (String) android.text.format.DateFormat.format("dd/MM/yyyy kk:mm:ss", dtModifiedOn);
+//			btYT_id = (Button) v
+//					.findViewById(R.id.btYT_id);
+//			btYT_id.setTag(v.getTag());
+//			btYT_id.setOnClickListener(this);
+//			
+//			String albums = getItem(position).name;
+//			String tvYT_id = getItem(position).yt_id;
+//			long CreatedOn = getItem(position).created_on;
+//			long ModifiedOn = getItem(position).modified_on;
+//			
+//			
+//			java.sql.Date dtCreatedOn = new java.sql.Date(CreatedOn);
+//			java.sql.Date dtModifiedOn = new java.sql.Date(ModifiedOn);
+//			
+//			
+//			String fdtCreatedOn = (String) android.text.format.DateFormat.format("dd/MM/yyyy kk:mm:ss", dtCreatedOn);
+//			String fdtModifiedOn = (String) android.text.format.DateFormat.format("dd/MM/yyyy kk:mm:ss", dtModifiedOn);
 			
 
-			holder.albumsView.setText(albums);
-			holder.tvCreatedOn.setText(fdtCreatedOn);
-			
-			holder.tvModifiedOn.setText(fdtModifiedOn);
+//			holder.youtube_view.setText(albums);
+//			holder.tvVidTitle.setText(fdtCreatedOn);
+//			
+//			holder.tvViddescription.setText(tvViddescription);
 
 			v.setOnClickListener(this);
 			
@@ -601,60 +525,60 @@ extApp.editTimingBuffer = source.editTimingBuffer;
 		      Dance curDance = extApp.getcurrentDance();
 		        
 		  
-				if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Samba) == 0) {
+				if ((curDance.name).compareToIgnoreCase(DBHelper.Samba) == 0) {
 
 					llRoutineEditBG.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_orange));
 					llRoutineEditClickAble.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_clickable_orange));
 
 					
-				}else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.ChaCha) == 0) {
+				}else if ((curDance.name).compareToIgnoreCase(DBHelper.ChaCha) == 0) {
 					
 					llRoutineEditBG.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_blue));
 					llRoutineEditClickAble.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_clickable_blue));
 					
-				}else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Rumba) == 0) {
+				}else if ((curDance.name).compareToIgnoreCase(DBHelper.Rumba) == 0) {
 					
 					llRoutineEditBG.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_purple));
 					llRoutineEditClickAble.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_clickable_purple));
 					
 					
-				}else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.PasoDoble) == 0) {
+				}else if ((curDance.name).compareToIgnoreCase(DBHelper.PasoDoble) == 0) {
 					
 					llRoutineEditBG.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_red));
 					llRoutineEditClickAble.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_clickable_red));
 					
 					
-				}else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Jive) == 0) {
+				}else if ((curDance.name).compareToIgnoreCase(DBHelper.Jive) == 0) {
 					
 					llRoutineEditBG.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_yellow));
 					llRoutineEditClickAble.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_clickable_yellow));
 					
 					
-				}else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Waltz) == 0) {
+				}else if ((curDance.name).compareToIgnoreCase(DBHelper.Waltz) == 0) {
 					
 					llRoutineEditBG.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_orange));
 					llRoutineEditClickAble.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_clickable_orange));
 					
 					
-				}else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Tango) == 0) {
+				}else if ((curDance.name).compareToIgnoreCase(DBHelper.Tango) == 0) {
 					
 					llRoutineEditBG.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_red));
 					llRoutineEditClickAble.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_clickable_red));
 					
 					
-				}else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.VienneseWaltz) == 0) {
+				}else if ((curDance.name).compareToIgnoreCase(DBHelper.VienneseWaltz) == 0) {
 					
 					llRoutineEditBG.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_purple));
 					llRoutineEditClickAble.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_clickable_purple));
 					
 					
-				}else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Foxtrot) == 0) {
+				}else if ((curDance.name).compareToIgnoreCase(DBHelper.Foxtrot) == 0) {
 					
 					llRoutineEditBG.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_blue));
 					llRoutineEditClickAble.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_clickable_blue));
 					
 					
-				}else if ((curDance.name).compareToIgnoreCase(extApp.dbHelper.Quickstep) == 0) {
+				}else if ((curDance.name).compareToIgnoreCase(DBHelper.Quickstep) == 0) {
 					
 					llRoutineEditBG.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_yellow));
 					llRoutineEditClickAble.setBackgroundDrawable(getResources().getDrawable(R.drawable.listrow_bg_clickable_yellow));
@@ -667,9 +591,20 @@ extApp.editTimingBuffer = source.editTimingBuffer;
 			return v;
 
 		}
+		
+		 
+		  public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult errorReason) {
+//		    if (errorReason.isUserRecoverableError()) {
+//		      errorReason.getErrorDialog(this, RECOVERY_DIALOG_REQUEST).show();
+//		    } else {
+//		      String errorMessage = String.format(getString(R.string.error_player), errorReason.toString());
+//		      Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+//		    }
+		  }
+	
 
-		Routine getRoutine(int position) {
-			return ((Routine) getItem(position));
+		Video getRoutine(int position) {
+			return (getItem(position));
 		}
 
 		public void onClick(View v) {
@@ -691,8 +626,8 @@ extApp.editTimingBuffer = source.editTimingBuffer;
 //				intent.putExtra("cur_routine_id", routines.get((Integer) v.getTag()).id);
 //				
 //				ctx.startActivity(intent);
-				ViewHolder holder = (ViewHolder) v.getTag();
-				holder.quickActionPopup1.show(v);
+//				ViewHolder holder = (ViewHolder) v.getTag();
+//				holder.quickActionPopup1.show(v);
 				break;
 			
 //			case R.id.btShareui:
@@ -770,75 +705,75 @@ extApp.editTimingBuffer = source.editTimingBuffer;
 //				break;
 				
 			case R.id.btEditRoutine:
-				Animation animRotate = AnimationUtils.loadAnimation(ctx,
-						R.anim.anim_scale);
-				v.startAnimation(animRotate);
-				holder = (ViewHolder) v.getTag();
-				holder.quickActionPopupEditRoutine.show(v);
+//				Animation animRotate = AnimationUtils.loadAnimation(ctx,
+//						R.anim.anim_scale);
+//				v.startAnimation(animRotate);
 //				holder = (ViewHolder) v.getTag();
-//				extApp.currentRoutineid = holder.position; // /Very
-//																			// very
-//																			// KRUTO
-//				Intent intent = new Intent(RoutinesListActivity.this,
-//						AddRoutineActivity.class);
-//				intent.putExtra("editmode", true);
-//				
-//				intent.putExtra("routines_name_buff", routines.get(holder.position).name);
-//				intent.putExtra("cur_routine_id", routines.get(holder.position).id);
-//				
-//				ctx.startActivity(intent);
+//				holder.quickActionPopupEditRoutine.show(v);
+////				holder = (ViewHolder) v.getTag();
+////				extApp.currentRoutineid = holder.position; // /Very
+////																			// very
+////																			// KRUTO
+////				Intent intent = new Intent(RoutinesListActivity.this,
+////						AddRoutineActivity.class);
+////				intent.putExtra("editmode", true);
+////				
+////				intent.putExtra("routines_name_buff", routines.get(holder.position).name);
+////				intent.putExtra("cur_routine_id", routines.get(holder.position).id);
+////				
+////				ctx.startActivity(intent);
 				break;
 
 			case R.id.btDeleteRoutine:
-				animRotate = AnimationUtils.loadAnimation(ctx,
-						R.anim.anim_scale);
-				v.startAnimation(animRotate);
-				holder = (ViewHolder) v.getTag();
-				extApp.currentRoutineid = routines.get(holder.position).id; // /Very
-				this.extApp.currentRoutineRawId = holder.position; // very
-				// KRUTO
-				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-						RoutinesListActivity.this);
-
-				// set title
-				alertDialogBuilder.setTitle(R.string.deleting);
-
-				// set dialog message
-				alertDialogBuilder
-						.setMessage(R.string.deleting_question)
-						.setCancelable(true)
-						.setPositiveButton(R.string.Yes,
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int id) {
-										DeleteCurrentRoutine();
-										Context context = getApplicationContext();
-										CharSequence text = getString(R.string.Deleted);
-										int duration = Toast.LENGTH_SHORT;
-										Toast.makeText(context, text, duration)
-												.show();
-
-									}
-								})
-						.setNegativeButton(R.string.No,
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int id) {
-
-									}
-								});
-
-				// create alert dialog
-				AlertDialog alertDialog = alertDialogBuilder.create();
-
-				// show it
-				alertDialog.show();
+//				animRotate = AnimationUtils.loadAnimation(ctx,
+//						R.anim.anim_scale);
+//				v.startAnimation(animRotate);
+//				holder = (ViewHolder) v.getTag();
+//				extApp.currentRoutineid = routines.get(holder.position).id; // /Very
+//				this.extApp.currentRoutineRawId = holder.position; // very
+//				// KRUTO
+//				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+//						VidsListActivity.this);
+//
+//				// set title
+//				alertDialogBuilder.setTitle(R.string.deleting);
+//
+//				// set dialog message
+//				alertDialogBuilder
+//						.setMessage(R.string.deleting_question)
+//						.setCancelable(true)
+//						.setPositiveButton(R.string.Yes,
+//								new DialogInterface.OnClickListener() {
+//									public void onClick(DialogInterface dialog,
+//											int id) {
+//										DeleteCurrentRoutine();
+//										Context context = getApplicationContext();
+//										CharSequence text = getString(R.string.Deleted);
+//										int duration = Toast.LENGTH_SHORT;
+//										Toast.makeText(context, text, duration)
+//												.show();
+//
+//									}
+//								})
+//						.setNegativeButton(R.string.No,
+//								new DialogInterface.OnClickListener() {
+//									public void onClick(DialogInterface dialog,
+//											int id) {
+//
+//									}
+//								});
+//
+//				// create alert dialog
+//				AlertDialog alertDialog = alertDialogBuilder.create();
+//
+//				// show it
+//				alertDialog.show();
 				break;
 
 			case R.id.llRoutineEditClickAble:
-				extApp.currentRoutineid = routines.get((Integer) v.getTag()).id;
-				Intent intent = new Intent(ctx, TabHostRoutineEditActivity.class);
-				ctx.startActivity(intent);
+//				extApp.currentRoutineid = routines.get((Integer) v.getTag()).id;
+//				Intent intent = new Intent(ctx, TabHostRoutineEditActivity.class);
+//				ctx.startActivity(intent);
 				break;
 
 			}
@@ -854,14 +789,14 @@ extApp.editTimingBuffer = source.editTimingBuffer;
 
 	void DeleteCurrentRoutine() {
 
-		extApp.db.delete(extApp.dbHelper.DB_TABLE_ROUTINE_RAWS,
-				extApp.dbHelper.COLUMN_ROUTINE_RAWS_ROUTINE_ID + "="
-						+ extApp.currentRoutineid, null);
-		extApp.db.delete(extApp.dbHelper.DB_TABLE_ROUTINES,
-				extApp.dbHelper.COLUMN_ROUTINES_ID + "="
-						+ extApp.currentRoutineid, null);
-		routines.remove(extApp.currentRoutineRawId);
-		boxAdapter.notifyDataSetChanged();
+//		extApp.db.delete(extApp.dbHelper.DB_TABLE_ROUTINE_RAWS,
+//				extApp.dbHelper.COLUMN_ROUTINE_RAWS_ROUTINE_ID + "="
+//						+ extApp.currentRoutineid, null);
+//		extApp.db.delete(extApp.dbHelper.DB_TABLE_ROUTINES,
+//				extApp.dbHelper.COLUMN_ROUTINES_ID + "="
+//						+ extApp.currentRoutineid, null);
+//		routines.remove(extApp.currentRoutineRawId);
+//		boxAdapter.notifyDataSetChanged();
 
 	}
 
@@ -870,6 +805,11 @@ extApp.editTimingBuffer = source.editTimingBuffer;
 		// TODO Auto-generated method stub
 		super.onBackPressed();
 	}
+
+	
+	
+	 
+	  
 	
 	
 
