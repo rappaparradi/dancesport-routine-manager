@@ -261,6 +261,13 @@ public class RoutinesListActivity extends ListActivity implements
 					CrudFiguresActivity.class);
 			startActivity(intent);
 			break;
+			
+//		case R.id.btVids:
+//
+//			intent = new Intent(RoutinesListActivity.this,
+//					.class);
+//			startActivity(intent);
+//			break;
 
 		}
 		return super.onOptionsItemSelected(item);
