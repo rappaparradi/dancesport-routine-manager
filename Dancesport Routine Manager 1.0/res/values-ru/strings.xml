@@ -1,5 +1,5 @@
 <resources>
-
+    <string name="app_name">Dancesport Routine Manager</string>
     <string name="NewRoutine">Новая вариация</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>

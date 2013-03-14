@@ -2,4 +2,7 @@
     <item android:id="@+id/btFigures" 
         android:title="@string/win_title_figures"
         android:icon="@drawable/ic_menu_agenda"></item>
+    <item android:id="@+id/btVids" 
+        android:title="Vids"
+        android:icon="@drawable/ic_menu_agenda"></item>
 </menu>
