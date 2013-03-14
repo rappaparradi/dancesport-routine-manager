@@ -1,5 +1,7 @@
 package com.rappasocial.routinemanager;
 
+
+
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;
@@ -13,11 +15,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	private Context context;
 	private static final String DB_NAME = "routineManagerDB";
-	public static final int DB_VERSION = 1;
+	public static final int DB_VERSION = 2;
+    
+	///version 1
 	public static final String DB_TABLE_DANCES = "dances";
 	public static final String DB_TABLE_FIGURES = "figures";
 	public static final String DB_TABLE_ROUTINES = "routines";
 	public static final String DB_TABLE_ROUTINE_RAWS = "routine_raws";
+	
 
 	public static final String COLUMN_DANCES_ID = "_id";
 	public static final String COLUMN_DANCES_NAME = "name";
@@ -51,6 +56,26 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_ROUTINE_RAWS_COMMENT = "comment";
 	public static final String COLUMN_ROUTINE_RAWS_WEIGHT = "weihgt";
 	public static final String COLUMN_ROUTINE_RAWS_GENDER = "gender";
+	
+	/// end version 1
+	
+	///version 2
+		public static final String DB_TABLE_VIDS = "vids";
+
+		
+
+		
+
+		public static final String COLUMN_VIDS_ID = "_id";
+		public static final String COLUMN_VIDS_YT_ID = "yt_id";
+		public static final String COLUMN_VIDS_TITLE = "title";
+		public static final String COLUMN_VIDS_DESCRIPTION = "description";
+		
+		
+
+		
+		
+		/// end version 2
 
 	// Dances names
 	public static final String Samba = "Samba";
@@ -74,6 +99,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 
+		///version 1
 		db.execSQL("create table " + DB_TABLE_DANCES + " (" + COLUMN_DANCES_ID
 				+ " integer primary key autoincrement," + COLUMN_DANCES_NAME
 				+ " text," + COLUMN_DANCES_LAT_or_ST + " boolean" + ");");
@@ -117,11 +143,36 @@ public class DBHelper extends SQLiteOpenHelper {
 
 		InitializeDances(db);
 		InitializeDefaultFigures(db);
+		/// end version 1
+		
+		///version 2
+		db.execSQL("create table " + DB_TABLE_VIDS + " ("
+				+ COLUMN_VIDS_ID + " integer primary key autoincrement,"
+				+ COLUMN_VIDS_YT_ID + " text,"
+				+ COLUMN_VIDS_TITLE + "  text, "
+				+ COLUMN_VIDS_DESCRIPTION + " text" + ");");
+		
+		InitializeVidsV2(db);
+		/// end version 2
 
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		
+		 for (int i = oldVersion; i < newVersion; i++)
+	        {
+	            switch(i)
+	            {
+	                case 1:
+	                	db.execSQL("create table " + DB_TABLE_VIDS + " ("
+	            				+ COLUMN_VIDS_ID + " integer primary key autoincrement,"
+	            				+ COLUMN_VIDS_YT_ID + " text,"
+	            				+ COLUMN_VIDS_TITLE + "  text, "
+	            				+ COLUMN_VIDS_DESCRIPTION + " text" + ");");
+	                    break;
+	            }
+	        }
 
 	}
 
@@ -129,45 +180,45 @@ public class DBHelper extends SQLiteOpenHelper {
 
 		ContentValues cv = new ContentValues();
 
-		cv.put(this.COLUMN_DANCES_NAME, "Samba");
-		cv.put(this.COLUMN_DANCES_LAT_or_ST, true);
-		db.insert(this.DB_TABLE_DANCES, null, cv);
+		cv.put(DBHelper.COLUMN_DANCES_NAME, "Samba");
+		cv.put(DBHelper.COLUMN_DANCES_LAT_or_ST, true);
+		db.insert(DBHelper.DB_TABLE_DANCES, null, cv);
 
-		cv.put(this.COLUMN_DANCES_NAME, "Cha Cha Cha");
-		cv.put(this.COLUMN_DANCES_LAT_or_ST, true);
-		db.insert(this.DB_TABLE_DANCES, null, cv);
+		cv.put(DBHelper.COLUMN_DANCES_NAME, "Cha Cha Cha");
+		cv.put(DBHelper.COLUMN_DANCES_LAT_or_ST, true);
+		db.insert(DBHelper.DB_TABLE_DANCES, null, cv);
 
-		cv.put(this.COLUMN_DANCES_NAME, "Rumba");
-		cv.put(this.COLUMN_DANCES_LAT_or_ST, true);
-		db.insert(this.DB_TABLE_DANCES, null, cv);
+		cv.put(DBHelper.COLUMN_DANCES_NAME, "Rumba");
+		cv.put(DBHelper.COLUMN_DANCES_LAT_or_ST, true);
+		db.insert(DBHelper.DB_TABLE_DANCES, null, cv);
 
-		cv.put(this.COLUMN_DANCES_NAME, "Paso Doble");
-		cv.put(this.COLUMN_DANCES_LAT_or_ST, true);
-		db.insert(this.DB_TABLE_DANCES, null, cv);
+		cv.put(DBHelper.COLUMN_DANCES_NAME, "Paso Doble");
+		cv.put(DBHelper.COLUMN_DANCES_LAT_or_ST, true);
+		db.insert(DBHelper.DB_TABLE_DANCES, null, cv);
 
-		cv.put(this.COLUMN_DANCES_NAME, "Jive");
-		cv.put(this.COLUMN_DANCES_LAT_or_ST, true);
-		db.insert(this.DB_TABLE_DANCES, null, cv);
+		cv.put(DBHelper.COLUMN_DANCES_NAME, "Jive");
+		cv.put(DBHelper.COLUMN_DANCES_LAT_or_ST, true);
+		db.insert(DBHelper.DB_TABLE_DANCES, null, cv);
 
-		cv.put(this.COLUMN_DANCES_NAME, "Waltz");
-		cv.put(this.COLUMN_DANCES_LAT_or_ST, false);
-		db.insert(this.DB_TABLE_DANCES, null, cv);
+		cv.put(DBHelper.COLUMN_DANCES_NAME, "Waltz");
+		cv.put(DBHelper.COLUMN_DANCES_LAT_or_ST, false);
+		db.insert(DBHelper.DB_TABLE_DANCES, null, cv);
 
-		cv.put(this.COLUMN_DANCES_NAME, "Tango");
-		cv.put(this.COLUMN_DANCES_LAT_or_ST, false);
-		db.insert(this.DB_TABLE_DANCES, null, cv);
+		cv.put(DBHelper.COLUMN_DANCES_NAME, "Tango");
+		cv.put(DBHelper.COLUMN_DANCES_LAT_or_ST, false);
+		db.insert(DBHelper.DB_TABLE_DANCES, null, cv);
 
-		cv.put(this.COLUMN_DANCES_NAME, "Viennese Waltz");
-		cv.put(this.COLUMN_DANCES_LAT_or_ST, false);
-		db.insert(this.DB_TABLE_DANCES, null, cv);
+		cv.put(DBHelper.COLUMN_DANCES_NAME, "Viennese Waltz");
+		cv.put(DBHelper.COLUMN_DANCES_LAT_or_ST, false);
+		db.insert(DBHelper.DB_TABLE_DANCES, null, cv);
 
-		cv.put(this.COLUMN_DANCES_NAME, "Foxtrot");
-		cv.put(this.COLUMN_DANCES_LAT_or_ST, false);
-		db.insert(this.DB_TABLE_DANCES, null, cv);
+		cv.put(DBHelper.COLUMN_DANCES_NAME, "Foxtrot");
+		cv.put(DBHelper.COLUMN_DANCES_LAT_or_ST, false);
+		db.insert(DBHelper.DB_TABLE_DANCES, null, cv);
 
-		cv.put(this.COLUMN_DANCES_NAME, "Quickstep");
-		cv.put(this.COLUMN_DANCES_LAT_or_ST, false);
-		db.insert(this.DB_TABLE_DANCES, null, cv);
+		cv.put(DBHelper.COLUMN_DANCES_NAME, "Quickstep");
+		cv.put(DBHelper.COLUMN_DANCES_LAT_or_ST, false);
+		db.insert(DBHelper.DB_TABLE_DANCES, null, cv);
 
 		cv.clear();
 
@@ -204,6 +255,21 @@ public class DBHelper extends SQLiteOpenHelper {
 		// db.insert(this.DB_TABLE_FIGURES, null, cv);
 
 	}
+	
+	private void InitializeVidsV2(SQLiteDatabase db) {
+
+		ContentValues cv = new ContentValues();
+
+		cv.put(DBHelper.COLUMN_VIDS_YT_ID, "OpHZDhoqh4Y");
+		cv.put(DBHelper.COLUMN_VIDS_TITLE, "Stefano Di Filippo - Spot Turn Cha Cha Lesson");
+		cv.put(DBHelper.COLUMN_VIDS_DESCRIPTION, "Cha Cha Basic - Spot Turn - Presenta Alessandra Valeri con Stefano e Annalisa Di Filippo");
+		db.insert(DBHelper.DB_TABLE_VIDS, null, cv);
+
+		
+		cv.clear();
+
+
+	}
 
 	private void InitializeDefaultFigures(SQLiteDatabase db) {
 
@@ -224,12 +290,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
 		Cursor c = null;
 
-		selectionArgs = new String[] { this.Samba };
+		selectionArgs = new String[] { DBHelper.Samba };
 
-		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+		selection = DBHelper.DB_TABLE_DANCES + "." + DBHelper.COLUMN_DANCES_NAME
 				+ " = ?";
 
-		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+		c = db.query(DBHelper.DB_TABLE_DANCES, null, selection, selectionArgs,
 				null, null, null);
 
 		if (c != null) {
@@ -237,7 +303,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 				do {
 					samba_id = c
-							.getInt(c.getColumnIndex(this.COLUMN_DANCES_ID));
+							.getInt(c.getColumnIndex(DBHelper.COLUMN_DANCES_ID));
 
 				} while (c.moveToNext());
 			}
@@ -250,18 +316,18 @@ public class DBHelper extends SQLiteOpenHelper {
 				.getStringArray(R.array.figures_samba);
 		for (int i = 0; i < figures_samba_array.length; i++) {
 
-			cv.put(this.COLUMN_FIGURES_NAME, figures_samba_array[i]);
-			cv.put(this.COLUMN_FIGURES_DANCE_ID, samba_id);
-			db.insert(this.DB_TABLE_FIGURES, null, cv);
+			cv.put(DBHelper.COLUMN_FIGURES_NAME, figures_samba_array[i]);
+			cv.put(DBHelper.COLUMN_FIGURES_DANCE_ID, samba_id);
+			db.insert(DBHelper.DB_TABLE_FIGURES, null, cv);
 
 		}
 
-		selectionArgs = new String[] { this.ChaCha };
+		selectionArgs = new String[] { DBHelper.ChaCha };
 
-		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+		selection = DBHelper.DB_TABLE_DANCES + "." + DBHelper.COLUMN_DANCES_NAME
 				+ " = ?";
 
-		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+		c = db.query(DBHelper.DB_TABLE_DANCES, null, selection, selectionArgs,
 				null, null, null);
 
 		if (c != null) {
@@ -269,7 +335,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 				do {
 					chachacha_id = c.getInt(c
-							.getColumnIndex(this.COLUMN_DANCES_ID));
+							.getColumnIndex(DBHelper.COLUMN_DANCES_ID));
 
 				} while (c.moveToNext());
 			}
@@ -281,18 +347,18 @@ public class DBHelper extends SQLiteOpenHelper {
 				.getStringArray(R.array.figures_chachacha);
 		for (int i = 0; i < chachacha_samba_array.length; i++) {
 
-			cv.put(this.COLUMN_FIGURES_NAME, chachacha_samba_array[i]);
-			cv.put(this.COLUMN_FIGURES_DANCE_ID, chachacha_id);
-			db.insert(this.DB_TABLE_FIGURES, null, cv);
+			cv.put(DBHelper.COLUMN_FIGURES_NAME, chachacha_samba_array[i]);
+			cv.put(DBHelper.COLUMN_FIGURES_DANCE_ID, chachacha_id);
+			db.insert(DBHelper.DB_TABLE_FIGURES, null, cv);
 
 		}
 		
-		selectionArgs = new String[] { this.Rumba };
+		selectionArgs = new String[] { DBHelper.Rumba };
 
-		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+		selection = DBHelper.DB_TABLE_DANCES + "." + DBHelper.COLUMN_DANCES_NAME
 				+ " = ?";
 
-		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+		c = db.query(DBHelper.DB_TABLE_DANCES, null, selection, selectionArgs,
 				null, null, null);
 
 		if (c != null) {
@@ -300,7 +366,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 				do {
 					rumba_id = c.getInt(c
-							.getColumnIndex(this.COLUMN_DANCES_ID));
+							.getColumnIndex(DBHelper.COLUMN_DANCES_ID));
 
 				} while (c.moveToNext());
 			}
@@ -312,18 +378,18 @@ public class DBHelper extends SQLiteOpenHelper {
 				.getStringArray(R.array.figures_rumba);
 		for (int i = 0; i < rumba_array.length; i++) {
 
-			cv.put(this.COLUMN_FIGURES_NAME, rumba_array[i]);
-			cv.put(this.COLUMN_FIGURES_DANCE_ID, rumba_id);
-			db.insert(this.DB_TABLE_FIGURES, null, cv);
+			cv.put(DBHelper.COLUMN_FIGURES_NAME, rumba_array[i]);
+			cv.put(DBHelper.COLUMN_FIGURES_DANCE_ID, rumba_id);
+			db.insert(DBHelper.DB_TABLE_FIGURES, null, cv);
 
 		}
 		
-		selectionArgs = new String[] { this.PasoDoble };
+		selectionArgs = new String[] { DBHelper.PasoDoble };
 
-		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+		selection = DBHelper.DB_TABLE_DANCES + "." + DBHelper.COLUMN_DANCES_NAME
 				+ " = ?";
 
-		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+		c = db.query(DBHelper.DB_TABLE_DANCES, null, selection, selectionArgs,
 				null, null, null);
 
 		if (c != null) {
@@ -331,7 +397,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 				do {
 					pasodoble_id = c.getInt(c
-							.getColumnIndex(this.COLUMN_DANCES_ID));
+							.getColumnIndex(DBHelper.COLUMN_DANCES_ID));
 
 				} while (c.moveToNext());
 			}
@@ -343,18 +409,18 @@ public class DBHelper extends SQLiteOpenHelper {
 				.getStringArray(R.array.figures_pasodoble);
 		for (int i = 0; i < pasodoble_array.length; i++) {
 
-			cv.put(this.COLUMN_FIGURES_NAME, pasodoble_array[i]);
-			cv.put(this.COLUMN_FIGURES_DANCE_ID, pasodoble_id);
-			db.insert(this.DB_TABLE_FIGURES, null, cv);
+			cv.put(DBHelper.COLUMN_FIGURES_NAME, pasodoble_array[i]);
+			cv.put(DBHelper.COLUMN_FIGURES_DANCE_ID, pasodoble_id);
+			db.insert(DBHelper.DB_TABLE_FIGURES, null, cv);
 
 		}
 		
-		selectionArgs = new String[] { this.Jive };
+		selectionArgs = new String[] { DBHelper.Jive };
 
-		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+		selection = DBHelper.DB_TABLE_DANCES + "." + DBHelper.COLUMN_DANCES_NAME
 				+ " = ?";
 
-		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+		c = db.query(DBHelper.DB_TABLE_DANCES, null, selection, selectionArgs,
 				null, null, null);
 
 		if (c != null) {
@@ -362,7 +428,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 				do {
 					jive_id = c.getInt(c
-							.getColumnIndex(this.COLUMN_DANCES_ID));
+							.getColumnIndex(DBHelper.COLUMN_DANCES_ID));
 
 				} while (c.moveToNext());
 			}
@@ -374,18 +440,18 @@ public class DBHelper extends SQLiteOpenHelper {
 				.getStringArray(R.array.figures_jive);
 		for (int i = 0; i < jive_array.length; i++) {
 
-			cv.put(this.COLUMN_FIGURES_NAME, jive_array[i]);
-			cv.put(this.COLUMN_FIGURES_DANCE_ID, jive_id);
-			db.insert(this.DB_TABLE_FIGURES, null, cv);
+			cv.put(DBHelper.COLUMN_FIGURES_NAME, jive_array[i]);
+			cv.put(DBHelper.COLUMN_FIGURES_DANCE_ID, jive_id);
+			db.insert(DBHelper.DB_TABLE_FIGURES, null, cv);
 
 		}
 		
-		selectionArgs = new String[] { this.Waltz };
+		selectionArgs = new String[] { DBHelper.Waltz };
 
-		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+		selection = DBHelper.DB_TABLE_DANCES + "." + DBHelper.COLUMN_DANCES_NAME
 				+ " = ?";
 
-		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+		c = db.query(DBHelper.DB_TABLE_DANCES, null, selection, selectionArgs,
 				null, null, null);
 
 		if (c != null) {
@@ -393,7 +459,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 				do {
 					waltz_id = c.getInt(c
-							.getColumnIndex(this.COLUMN_DANCES_ID));
+							.getColumnIndex(DBHelper.COLUMN_DANCES_ID));
 
 				} while (c.moveToNext());
 			}
@@ -405,18 +471,18 @@ public class DBHelper extends SQLiteOpenHelper {
 				.getStringArray(R.array.figures_waltz);
 		for (int i = 0; i < waltz_array.length; i++) {
 
-			cv.put(this.COLUMN_FIGURES_NAME, waltz_array[i]);
-			cv.put(this.COLUMN_FIGURES_DANCE_ID, waltz_id);
-			db.insert(this.DB_TABLE_FIGURES, null, cv);
+			cv.put(DBHelper.COLUMN_FIGURES_NAME, waltz_array[i]);
+			cv.put(DBHelper.COLUMN_FIGURES_DANCE_ID, waltz_id);
+			db.insert(DBHelper.DB_TABLE_FIGURES, null, cv);
 
 		}
 		
-		selectionArgs = new String[] { this.Tango };
+		selectionArgs = new String[] { DBHelper.Tango };
 
-		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+		selection = DBHelper.DB_TABLE_DANCES + "." + DBHelper.COLUMN_DANCES_NAME
 				+ " = ?";
 
-		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+		c = db.query(DBHelper.DB_TABLE_DANCES, null, selection, selectionArgs,
 				null, null, null);
 
 		if (c != null) {
@@ -424,7 +490,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 				do {
 					tango_id = c.getInt(c
-							.getColumnIndex(this.COLUMN_DANCES_ID));
+							.getColumnIndex(DBHelper.COLUMN_DANCES_ID));
 
 				} while (c.moveToNext());
 			}
@@ -436,18 +502,18 @@ public class DBHelper extends SQLiteOpenHelper {
 				.getStringArray(R.array.figures_tango);
 		for (int i = 0; i < tango_array.length; i++) {
 
-			cv.put(this.COLUMN_FIGURES_NAME, tango_array[i]);
-			cv.put(this.COLUMN_FIGURES_DANCE_ID, tango_id);
-			db.insert(this.DB_TABLE_FIGURES, null, cv);
+			cv.put(DBHelper.COLUMN_FIGURES_NAME, tango_array[i]);
+			cv.put(DBHelper.COLUMN_FIGURES_DANCE_ID, tango_id);
+			db.insert(DBHelper.DB_TABLE_FIGURES, null, cv);
 
 		}
 		
-		selectionArgs = new String[] { this.VienneseWaltz };
+		selectionArgs = new String[] { DBHelper.VienneseWaltz };
 
-		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+		selection = DBHelper.DB_TABLE_DANCES + "." + DBHelper.COLUMN_DANCES_NAME
 				+ " = ?";
 
-		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+		c = db.query(DBHelper.DB_TABLE_DANCES, null, selection, selectionArgs,
 				null, null, null);
 
 		if (c != null) {
@@ -455,7 +521,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 				do {
 					viennese_waltz_id = c.getInt(c
-							.getColumnIndex(this.COLUMN_DANCES_ID));
+							.getColumnIndex(DBHelper.COLUMN_DANCES_ID));
 
 				} while (c.moveToNext());
 			}
@@ -467,18 +533,18 @@ public class DBHelper extends SQLiteOpenHelper {
 				.getStringArray(R.array.figures_viennese_waltz);
 		for (int i = 0; i < viennese_waltz_array.length; i++) {
 
-			cv.put(this.COLUMN_FIGURES_NAME, viennese_waltz_array[i]);
-			cv.put(this.COLUMN_FIGURES_DANCE_ID, viennese_waltz_id);
-			db.insert(this.DB_TABLE_FIGURES, null, cv);
+			cv.put(DBHelper.COLUMN_FIGURES_NAME, viennese_waltz_array[i]);
+			cv.put(DBHelper.COLUMN_FIGURES_DANCE_ID, viennese_waltz_id);
+			db.insert(DBHelper.DB_TABLE_FIGURES, null, cv);
 
 		}
 		
-		selectionArgs = new String[] { this.Foxtrot };
+		selectionArgs = new String[] { DBHelper.Foxtrot };
 
-		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+		selection = DBHelper.DB_TABLE_DANCES + "." + DBHelper.COLUMN_DANCES_NAME
 				+ " = ?";
 
-		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+		c = db.query(DBHelper.DB_TABLE_DANCES, null, selection, selectionArgs,
 				null, null, null);
 
 		if (c != null) {
@@ -486,7 +552,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 				do {
 					foxtrot_id = c.getInt(c
-							.getColumnIndex(this.COLUMN_DANCES_ID));
+							.getColumnIndex(DBHelper.COLUMN_DANCES_ID));
 
 				} while (c.moveToNext());
 			}
@@ -498,18 +564,18 @@ public class DBHelper extends SQLiteOpenHelper {
 				.getStringArray(R.array.figures_foxtrot);
 		for (int i = 0; i < foxtrot_array.length; i++) {
 
-			cv.put(this.COLUMN_FIGURES_NAME, foxtrot_array[i]);
-			cv.put(this.COLUMN_FIGURES_DANCE_ID, foxtrot_id);
-			db.insert(this.DB_TABLE_FIGURES, null, cv);
+			cv.put(DBHelper.COLUMN_FIGURES_NAME, foxtrot_array[i]);
+			cv.put(DBHelper.COLUMN_FIGURES_DANCE_ID, foxtrot_id);
+			db.insert(DBHelper.DB_TABLE_FIGURES, null, cv);
 
 		}
 		
-		selectionArgs = new String[] { this.Quickstep };
+		selectionArgs = new String[] { DBHelper.Quickstep };
 
-		selection = this.DB_TABLE_DANCES + "." + this.COLUMN_DANCES_NAME
+		selection = DBHelper.DB_TABLE_DANCES + "." + DBHelper.COLUMN_DANCES_NAME
 				+ " = ?";
 
-		c = db.query(this.DB_TABLE_DANCES, null, selection, selectionArgs,
+		c = db.query(DBHelper.DB_TABLE_DANCES, null, selection, selectionArgs,
 				null, null, null);
 
 		if (c != null) {
@@ -517,7 +583,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 				do {
 					quickstep_id = c.getInt(c
-							.getColumnIndex(this.COLUMN_DANCES_ID));
+							.getColumnIndex(DBHelper.COLUMN_DANCES_ID));
 
 				} while (c.moveToNext());
 			}
@@ -529,9 +595,9 @@ public class DBHelper extends SQLiteOpenHelper {
 				.getStringArray(R.array.figures_quickstep);
 		for (int i = 0; i < quickstep_array.length; i++) {
 
-			cv.put(this.COLUMN_FIGURES_NAME, quickstep_array[i]);
-			cv.put(this.COLUMN_FIGURES_DANCE_ID, quickstep_id);
-			db.insert(this.DB_TABLE_FIGURES, null, cv);
+			cv.put(DBHelper.COLUMN_FIGURES_NAME, quickstep_array[i]);
+			cv.put(DBHelper.COLUMN_FIGURES_DANCE_ID, quickstep_id);
+			db.insert(DBHelper.DB_TABLE_FIGURES, null, cv);
 
 		}
 		// cv.put(this.COLUMN_FIGURES_NAME, "Виск вправо");
