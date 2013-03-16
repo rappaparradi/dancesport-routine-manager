@@ -267,12 +267,12 @@ public class RoutinesListActivity extends ListActivity implements
 			startActivity(intent);
 			break;
 			
-//		case R.id.btVids:
-//
-//			intent = new Intent(RoutinesListActivity.this,
-//					.class);
-//			startActivity(intent);
-//			break;
+		case R.id.btVids:
+
+			intent = new Intent(RoutinesListActivity.this,
+					VidsListActivity.class);
+			startActivity(intent);
+			break;
 
 		}
 		return super.onOptionsItemSelected(item);
